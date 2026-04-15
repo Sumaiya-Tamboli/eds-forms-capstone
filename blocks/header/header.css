@@ -267,56 +267,53 @@ header nav .nav-tools {
   grid-area: tools;
 }
 
-
-
-/* ===== HDFC STYLE TOP HEADER STRIP ===== */
-.header-top-strip {
-  background-color: #0b1f3f; /* dark blue */
-  height: 80px;
-  width: 100%;
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 3;
+.header {
+  background: #03164a;
+  min-height: 72px;
+  padding: 0 48px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 32px;
-  box-sizing: border-box;
+  position: relative;
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  border-radius: 0;
 }
-
-/* push your nav down so it doesn't overlap */
-header .nav-wrapper {
-  top: 80px;
-}
-
-/* logo styling */
-.header-top-strip .bank-logo img {
-  height: 32px;
-}
-
-/* safety badge */
-.header-top-strip .safe-badge {
-  background: #1db954;
-  color: white;
-  font-size: 12px;
-  padding: 6px 12px;
-  border-radius: 20px;
-  display: flex;
+ 
+.header::before {
+  content: "HDFC BANK";
+  display: inline-flex;
   align-items: center;
-  gap: 6px;
-  font-weight: 600;
+  justify-content: center;
+  background: #0a2d7c;
+  color: #fff;
+  font-size: 14px;      
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  height: 28px;        
+  padding: 0 14px 0 24px;
+  border: 1px solid #ffffff;
+  box-sizing: border-box;
+  position: relative;
+  box-shadow: inset 10px 0 0 #e21b23;
+ 
+/* right secure pill */
+.header::after {
+  content: "100% SAFE";
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #39b56a;
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  border-radius: 12px;
+  padding: 4px 10px;
+  line-height: 1;
 }
-
-/* curved bottom white section */
-.header-curve {
-  position: fixed;
-  top: 80px;
-  left: 0;
-  width: 100%;
-  height: 40px;
-  background: #f5f5f5;
-  border-top-left-radius: 16px;
-  border-top-right-radius: 16px;
-  z-index: 2;
+ 
+/* hide any inner text */
+.header > * {
+  display: none;
+}
 }
