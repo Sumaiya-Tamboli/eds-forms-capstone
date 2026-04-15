@@ -164,3 +164,16 @@ export default async function decorate(block) {
   navWrapper.append(nav);
   block.append(navWrapper);
 }
+
+
+
+
+window.addEventListener("scroll", function () {
+  const header = document.querySelector(".header-top-strip");
+
+  if (window.scrollY > 50) {
+    header.style.height = "60px";
+  } else {
+    header.style.height = "80px";
+  }
+});
