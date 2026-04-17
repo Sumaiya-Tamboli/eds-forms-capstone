@@ -34,6 +34,9 @@ footer .footer p {
   display: flex;
   align-items: center;
   justify-content: center;
+  position: fixed;      /* add */
+  bottom: 0;            /* add */
+  z-index: 10;
 }
  
 /* show default text if empty */
