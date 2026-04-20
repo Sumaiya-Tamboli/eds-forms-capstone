@@ -804,3 +804,27 @@ main .form form .field-name > label {
 color: #a600ff;
 
 }
+main .form form .field-wrapper label {
+
+Font-weight: 600;
+
+}
+
+
+
+.field-essential-mobile-phone p {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* space between icon and text */
+  margin: 0;
+}
+
+.field-essential-mobile-phone p::before {
+  content: "";
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  background-image: url("/icons/mobile.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
