@@ -59,8 +59,8 @@ export default async function decorate(block) {
 
 
 
-document.addEventListener("DOMContentLoaded", () => {
-  const panels = document.querySelectorAll(
+export default function decorate(block) {
+  const panels = block.querySelectorAll(
     ".field-loan-details-panel, .field-personal-details-panel"
   );
 
@@ -68,41 +68,40 @@ document.addEventListener("DOMContentLoaded", () => {
     const legend = panel.querySelector("legend");
     if (!legend) return;
 
-    // Make legend clickable
+    /* ---------- make legend clickable ---------- */
     legend.style.cursor = "pointer";
     legend.style.display = "flex";
     legend.style.alignItems = "center";
     legend.style.justifyContent = "space-between";
 
-    // Inject chevron arrow
+    /* ---------- inject chevron ---------- */
     const chevron = document.createElement("span");
     chevron.className = "eds-chevron";
     legend.appendChild(chevron);
 
-    // Wrap all content except legend
-    const contentWrapper = document.createElement("div");
-    contentWrapper.className = "eds-panel-content";
+    /* ---------- wrap content ---------- */
+    const content = document.createElement("div");
+    content.className = "eds-panel-content";
 
     [...panel.children].forEach(child => {
       if (child !== legend) {
-        contentWrapper.appendChild(child);
+        content.appendChild(child);
       }
     });
 
-    panel.appendChild(contentWrapper);
+    panel.appendChild(content);
 
-    // Default state → OPEN first panel, CLOSE others
-    const isOpenByDefault = index === 0;
-    panel.classList.toggle("eds-expanded", isOpenByDefault);
-    contentWrapper.style.maxHeight = isOpenByDefault
-      ? contentWrapper.scrollHeight + "px"
+    /* ---------- default state ---------- */
+    const openByDefault = index === 0;
+    panel.classList.toggle("eds-expanded", openByDefault);
+    content.style.maxHeight = openByDefault
+      ? content.scrollHeight + "px"
       : null;
 
-    // Click handler
+    /* ---------- click handler ---------- */
     legend.addEventListener("click", () => {
       const isOpen = panel.classList.contains("eds-expanded");
 
-      // Accordion behavior
       panels.forEach(p => {
         p.classList.remove("eds-expanded");
         const c = p.querySelector(".eds-panel-content");
@@ -111,35 +110,60 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (!isOpen) {
         panel.classList.add("eds-expanded");
-        contentWrapper.style.maxHeight =
-          contentWrapper.scrollHeight + "px";
+        content.style.maxHeight = content.scrollHeight + "px";
       }
     });
   });
-});
 
-const style = document.createElement("style");
-style.innerHTML = `
-/* Chevron */
-.eds-chevron {
-  width: 8px;
-  height: 8px;
-  border-right: 2px solid #2563eb;
-  border-bottom: 2px solid #2563eb;
-  transform: rotate(45deg);
-  transition: transform 0.3s ease;
-  margin-left: auto;
-}
+  /* ---------- inject CSS ---------- */
+  const style = document.createElement("style");
+  style.textContent = `
+    .eds-chevron {
+      width: 8px;
+      height: 8px;
+      border-right: 2px solid #2563eb;
+      border-bottom: 2px solid #2563eb;
+      transform: rotate(45deg);
+      transition: transform 0.3s ease;
+      margin-left: auto;
+    }
 
-/* Expanded state */
-.eds-expanded .eds-chevron {
-  transform: rotate(-135deg);
-}
+    .eds-expanded .eds-chevron {
+      transform: rotate(-135deg);
+    }
 
-/* Collapsible content */
-.eds-panel-content {
-  overflow: hidden;
-  transition: max-height 0.35s ease;
+    .eds-panel-content {
+      overflow: hidden;
+      transition: max-height 0.35s ease;
+    }
+  `;
+  document.head.appendChild(style);
 }
-`;
-document.head.appendChild(style);
+``
+
+
+// const style = document.createElement("style");
+// style.innerHTML = `
+// /* Chevron */
+// .eds-chevron {
+//   width: 8px;
+//   height: 8px;
+//   border-right: 2px solid #2563eb;
+//   border-bottom: 2px solid #2563eb;
+//   transform: rotate(45deg);
+//   transition: transform 0.3s ease;
+//   margin-left: auto;
+// }
+
+// /* Expanded state */
+// .eds-expanded .eds-chevron {
+//   transform: rotate(-135deg);
+// }
+
+// /* Collapsible content */
+// .eds-panel-content {
+//   overflow: hidden;
+//   transition: max-height 0.35s ease;
+// }
+// `;
+// document.head.appendChild(style);
