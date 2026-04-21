@@ -142,28 +142,28 @@ export default function decorate(block) {
 ``
 
 
-// const style = document.createElement("style");
-// style.innerHTML = `
-// /* Chevron */
-// .eds-chevron {
-//   width: 8px;
-//   height: 8px;
-//   border-right: 2px solid #2563eb;
-//   border-bottom: 2px solid #2563eb;
-//   transform: rotate(45deg);
-//   transition: transform 0.3s ease;
-//   margin-left: auto;
-// }
+const style = document.createElement("style");
+style.innerHTML = `
+/* Chevron */
+.eds-chevron {
+  width: 8px;
+  height: 8px;
+  border-right: 2px solid #2563eb;
+  border-bottom: 2px solid #2563eb;
+  transform: rotate(45deg);
+  transition: transform 0.3s ease;
+  margin-left: auto;
+}
 
-// /* Expanded state */
-// .eds-expanded .eds-chevron {
-//   transform: rotate(-135deg);
-// }
+/* Expanded state */
+.eds-expanded .eds-chevron {
+  transform: rotate(-135deg);
+}
 
-// /* Collapsible content */
-// .eds-panel-content {
-//   overflow: hidden;
-//   transition: max-height 0.35s ease;
-// }
-// `;
-// document.head.appendChild(style);
+/* Collapsible content */
+.eds-panel-content {
+  overflow: hidden;
+  transition: max-height 0.35s ease;
+}
+`;
+document.head.appendChild(style);
