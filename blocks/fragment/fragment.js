@@ -60,63 +60,81 @@ export default async function decorate(block) {
 
 
 export default function decorate(block) {
-  const panels = block.querySelectorAll(
-    ".field-loan-details-panel, .field-personal-details-panel"
-  );
+  const observer = new MutationObserver(() => {
+    const panels = block.querySelectorAll(
+      ".field-loan-details-panel, .field-personal-details-panel"
+    );
 
-  panels.forEach((panel, index) => {
-    const legend = panel.querySelector("legend");
-    if (!legend) return;
+    if (!panels.length) return;
 
-    /* ---------- make legend clickable ---------- */
-    legend.style.cursor = "pointer";
-    legend.style.display = "flex";
-    legend.style.alignItems = "center";
-    legend.style.justifyContent = "space-between";
+    // Stop observing once panels are found
+    observer.disconnect();
 
-    /* ---------- inject chevron ---------- */
-    const chevron = document.createElement("span");
-    chevron.className = "eds-chevron";
-    legend.appendChild(chevron);
+    panels.forEach((panel, index) => {
+      const legend = panel.querySelector("legend");
+      if (!legend || legend.classList.contains("eds-processed")) return;
 
-    /* ---------- wrap content ---------- */
-    const content = document.createElement("div");
-    content.className = "eds-panel-content";
+      legend.classList.add("eds-processed");
 
-    [...panel.children].forEach(child => {
-      if (child !== legend) {
-        content.appendChild(child);
-      }
-    });
+      // Make legend clickable
+      legend.style.cursor = "pointer";
+      legend.style.display = "flex";
+      legend.style.alignItems = "center";
+      legend.style.justifyContent = "space-between";
 
-    panel.appendChild(content);
+      // Chevron
+      const chevron = document.createElement("span");
+      chevron.className = "eds-chevron";
+      legend.appendChild(chevron);
 
-    /* ---------- default state ---------- */
-    const openByDefault = index === 0;
-    panel.classList.toggle("eds-expanded", openByDefault);
-    content.style.maxHeight = openByDefault
-      ? content.scrollHeight + "px"
-      : null;
+      // Wrap content
+      const content = document.createElement("div");
+      content.className = "eds-panel-content";
 
-    /* ---------- click handler ---------- */
-    legend.addEventListener("click", () => {
-      const isOpen = panel.classList.contains("eds-expanded");
-
-      panels.forEach(p => {
-        p.classList.remove("eds-expanded");
-        const c = p.querySelector(".eds-panel-content");
-        if (c) c.style.maxHeight = null;
+      [...panel.children].forEach(child => {
+        if (child !== legend) {
+          content.appendChild(child);
+        }
       });
 
-      if (!isOpen) {
-        panel.classList.add("eds-expanded");
-        content.style.maxHeight = content.scrollHeight + "px";
-      }
+      panel.appendChild(content);
+
+      // Default state
+      const openByDefault = index === 0;
+      panel.classList.toggle("eds-expanded", openByDefault);
+      content.style.maxHeight = openByDefault
+        ? content.scrollHeight + "px"
+        : "0px";
+
+      // Toggle
+      legend.addEventListener("click", () => {
+        const isOpen = panel.classList.contains("eds-expanded");
+
+        panels.forEach(p => {
+          p.classList.remove("eds-expanded");
+          const c = p.querySelector(".eds-panel-content");
+          if (c) c.style.maxHeight = "0px";
+        });
+
+        if (!isOpen) {
+          panel.classList.add("eds-expanded");
+          content.style.maxHeight = content.scrollHeight + "px";
+        }
+      });
     });
+
+    injectStyles();
   });
 
-  /* ---------- inject CSS ---------- */
+  observer.observe(block, { childList: true, subtree: true });
+}
+
+/* ---------------- CSS injection ---------------- */
+function injectStyles() {
+  if (document.getElementById("eds-form-dropdown-styles")) return;
+
   const style = document.createElement("style");
+  style.id = "eds-form-dropdown-styles";
   style.textContent = `
     .eds-chevron {
       width: 8px;
@@ -139,31 +157,3 @@ export default function decorate(block) {
   `;
   document.head.appendChild(style);
 }
-``
-
-
-const style = document.createElement("style");
-style.innerHTML = `
-/* Chevron */
-.eds-chevron {
-  width: 8px;
-  height: 8px;
-  border-right: 2px solid #2563eb;
-  border-bottom: 2px solid #2563eb;
-  transform: rotate(45deg);
-  transition: transform 0.3s ease;
-  margin-left: auto;
-}
-
-/* Expanded state */
-.eds-expanded .eds-chevron {
-  transform: rotate(-135deg);
-}
-
-/* Collapsible content */
-.eds-panel-content {
-  overflow: hidden;
-  transition: max-height 0.35s ease;
-}
-`;
-document.head.appendChild(style);
