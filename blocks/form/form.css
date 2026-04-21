@@ -970,3 +970,66 @@ button.button {
 button.button:hover {
   background: #1d4ed8;
 }
+
+
+/* =====================
+   RESPONSIVE BREAKPOINTS
+===================== */
+
+/* ---------- TABLET (≤1199px) ---------- */
+@media (max-width: 1199px) {
+  body {
+    padding: 16px;
+  }
+
+  /* 2 columns instead of 4 */
+  .col-3 {
+    grid-column: span 6;
+  }
+
+  .panel-wrapper.field-review-details {
+    max-width: 100%;
+  }
+}
+
+/* ---------- MOBILE (≤767px) ---------- */
+@media (max-width: 767px) {
+  body {
+    padding: 12px;
+  }
+
+  /* Single column layout */
+  .field-loan-details-panel,
+  .field-personal-details-panel {
+    grid-template-columns: 1fr;
+    padding: 16px;
+  }
+
+  .col-3,
+  .col-12 {
+    grid-column: span 12;
+  }
+
+  /* Section titles spacing */
+  .field-loan-details-panel > .field-label,
+  .field-personal-details-panel > .field-label {
+    font-size: 16px;
+    margin-bottom: 12px;
+  }
+
+  /* Improve readability on small screens */
+  input[type="text"] {
+    font-size: 15px;
+  }
+
+  /* Confirm button full width */
+  .submit-wrapper {
+    grid-column: span 12;
+  }
+
+  button.button {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+  }
+}

@@ -56,3 +56,90 @@ export default async function decorate(block) {
     }
   }
 }
+
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  const panels = document.querySelectorAll(
+    ".field-loan-details-panel, .field-personal-details-panel"
+  );
+
+  panels.forEach((panel, index) => {
+    const legend = panel.querySelector("legend");
+    if (!legend) return;
+
+    // Make legend clickable
+    legend.style.cursor = "pointer";
+    legend.style.display = "flex";
+    legend.style.alignItems = "center";
+    legend.style.justifyContent = "space-between";
+
+    // Inject chevron arrow
+    const chevron = document.createElement("span");
+    chevron.className = "eds-chevron";
+    legend.appendChild(chevron);
+
+    // Wrap all content except legend
+    const contentWrapper = document.createElement("div");
+    contentWrapper.className = "eds-panel-content";
+
+    [...panel.children].forEach(child => {
+      if (child !== legend) {
+        contentWrapper.appendChild(child);
+      }
+    });
+
+    panel.appendChild(contentWrapper);
+
+    // Default state → OPEN first panel, CLOSE others
+    const isOpenByDefault = index === 0;
+    panel.classList.toggle("eds-expanded", isOpenByDefault);
+    contentWrapper.style.maxHeight = isOpenByDefault
+      ? contentWrapper.scrollHeight + "px"
+      : null;
+
+    // Click handler
+    legend.addEventListener("click", () => {
+      const isOpen = panel.classList.contains("eds-expanded");
+
+      // Accordion behavior
+      panels.forEach(p => {
+        p.classList.remove("eds-expanded");
+        const c = p.querySelector(".eds-panel-content");
+        if (c) c.style.maxHeight = null;
+      });
+
+      if (!isOpen) {
+        panel.classList.add("eds-expanded");
+        contentWrapper.style.maxHeight =
+          contentWrapper.scrollHeight + "px";
+      }
+    });
+  });
+});
+
+const style = document.createElement("style");
+style.innerHTML = `
+/* Chevron */
+.eds-chevron {
+  width: 8px;
+  height: 8px;
+  border-right: 2px solid #2563eb;
+  border-bottom: 2px solid #2563eb;
+  transform: rotate(45deg);
+  transition: transform 0.3s ease;
+  margin-left: auto;
+}
+
+/* Expanded state */
+.eds-expanded .eds-chevron {
+  transform: rotate(-135deg);
+}
+
+/* Collapsible content */
+.eds-panel-content {
+  overflow: hidden;
+  transition: max-height 0.35s ease;
+}
+`;
+document.head.appendChild(style);
