@@ -14,6 +14,9 @@ export function handleAccordionNavigation(panel, tab, forceOpen = false) {
 
 export default function decorate(panel) {
   panel.classList.add('accordion');
+
+   decorateLoanDetailsPanel(panel);
+   
   const accordionTabs = panel?.querySelectorAll(':scope > fieldset');
   accordionTabs?.forEach((tab, index) => {
     tab.dataset.index = index;
