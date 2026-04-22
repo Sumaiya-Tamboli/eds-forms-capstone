@@ -62,3 +62,137 @@ main .form fieldset.accordion {
 
 
 
+/* ====== ACCORDION APPEARANCE OVERRIDES (KEEP EXISTING CSS AS-IS) ====== */
+
+/* Panel background & spacing */
+main .form fieldset.accordion > fieldset:not(.checkbox-group-wrapper, .radio-group-wrapper) {
+    background: linear-gradient(180deg, #f5f8ff 0%, #ffffff 100%);
+    border-radius: 10px;
+    border: 1px solid #e1e7ff;
+    margin: 12px 0;
+    padding-bottom: 12px;
+}
+
+/* Accordion header (Item 1, Item 2...) */
+main .form fieldset.accordion legend.accordion-legend {
+    padding: 14px 24px;
+    background: transparent;
+    font-weight: 600;
+    font-size: 15px;
+    color: #1c1f3a;
+    display: flex;
+    align-items: center;
+}
+
+/* Header chevron color/position – keep functionality */
+main .form .accordion > fieldset > legend::after {
+    color: #1c3fca;
+    right: 18px;
+}
+
+/* Inner panel legend: "Loan Details", "Personal Details" */
+main .form fieldset.accordion fieldset > legend.field-label {
+    padding: 14px 24px 6px 24px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #1c1f3a;
+    border-bottom: 1px solid #e1e7ff;
+}
+
+/* Two rows layout spacing */
+main .form fieldset.accordion fieldset > :not(legend) {
+    padding-left: 24px;
+    padding-right: 24px;
+}
+
+/* Make each field look like text blocks (label + value) */
+main .form .accordion .field-wrapper {
+    margin-top: 12px;
+    margin-bottom: 0;
+}
+
+/* Label styling ("Loan Amount", "EMI Amount", etc.) */
+main .form .accordion .field-wrapper > label.field-label {
+    display: block;
+    font-size: 11px;
+    font-weight: 500;
+    color: #8c93b2;
+    margin-bottom: 2px;
+}
+
+/* Value styling (inputs visually like plain text) */
+main .form .accordion .field-wrapper input[type="text"] {
+    border: none;
+    border-radius: 0;
+    padding: 0;
+    height: auto;
+    font-size: 13px;
+    font-weight: 600;
+    color: #1c1f3a;
+    background: transparent;
+    box-shadow: none;
+    outline: none;
+}
+
+/* Remove magenta borders if inherited from elsewhere */
+main .form .accordion .field-wrapper input[type="text"] {
+    border-color: transparent !important;
+}
+
+/* Underline-style separator between columns (subtle) */
+main .form .accordion .field-wrapper.col-3 {
+    border-right: 1px solid #ebeff9;
+    padding-right: 16px;
+}
+
+/* Remove right border from last column in row */
+main .form .accordion .field-wrapper.col-3:nth-child(4),
+main .form .accordion .field-wrapper.col-3:nth-child(8) {
+    border-right: none;
+}
+
+/* Second row in Loan Details (Employer Name, etc.) spacing */
+main .form .accordion .field-employer-name,
+main .form .accordion .field-schedule-of-charges,
+main .form .accordion .field-type-of-loan,
+main .form .accordion .field-rate-of-interest {
+    margin-top: 20px;
+}
+
+/* "Click here" link style for Schedule of Charges example */
+main .form .accordion .field-schedule-of-charges input[type="text"] {
+    color: #296bff;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+/* Personal details long fields (Current Address, Residence Type) */
+main .form .accordion .field-current-address,
+main .form .accordion .field-residence-type {
+    margin-top: 18px;
+}
+
+main .form .accordion .field-current-address input[type="text"],
+main .form .accordion .field-residence-type input[type="text"] {
+    width: 100%;
+    white-space: normal;
+}
+
+/* "Confirm" button alignment at bottom-right, minimal styling */
+main .form .accordion .field-confirm-button {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 16px;
+    padding-right: 24px;
+}
+
+main .form .accordion .field-confirm-button .button {
+    padding: 8px 20px;
+    border-radius: 6px;
+    border: none;
+    background: #296bff;
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+}
