@@ -61,10 +61,7 @@ main .form fieldset.accordion {
 
 
 
-
-/* ── Loan/Personal Details Panel Styling ── */
-
-/* Outer accordion item panels */
+/* ── Outer accordion item panels ── */
 main .form fieldset.accordion > fieldset {
     background: #f4f6fd;
     border-radius: 12px !important;
@@ -74,83 +71,83 @@ main .form fieldset.accordion > fieldset {
     box-shadow: 0 2px 8px rgba(28, 63, 202, 0.06);
 }
 
-/* Section header (accordion legend) */
+/* ── Section header legend ── */
 main .form fieldset.accordion legend.accordion-legend {
     border-radius: 12px 12px 0 0;
     font-size: 16px;
     font-weight: 600;
     color: #1a2a6c;
     letter-spacing: 0.01em;
-    display: flex;
-    align-items: center;
-    gap: 10px;
     border-bottom: 1px solid #dde3f5;
+    width: 100%;
+    box-sizing: border-box;
 }
 
-/* Inner panel (Loan Details / Personal Details fieldset) */
+/* ── Hide inner panel legends (Loan Details / Personal Details) ── */
+main .form fieldset.accordion fieldset:not(.accordion) > legend {
+    display: none !important;
+}
+
+/* ── Inner panel padding ── */
 main .form fieldset.accordion fieldset:not(.accordion) {
     border: none !important;
     background: transparent;
     padding: 16px 20px 20px !important;
     margin: 0 !important;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
 }
 
-main .form fieldset.accordion fieldset > legend {
-    display: none !important; /* Hide inner panel legends (Loan Details, Personal Details) */
-}
-
-/* Field wrapper grid layout */
+/* ── Reset padding override from default CSS ── */
 main .form fieldset.accordion fieldset > :not(legend) {
     padding-left: 0 !important;
     padding-right: 0 !important;
 }
 
-/* Individual field cards */
+/* ── Individual field cards ── */
 main .form fieldset.accordion .field-wrapper.text-wrapper,
 main .form fieldset.accordion .field-wrapper.date-wrapper {
     background: #ffffff;
     border: 1px solid #e2e8f5;
     border-radius: 8px;
-    padding: 10px 14px 12px !important;
-    display: flex;
+    padding: 10px 14px !important;
+    display: flex !important;
     flex-direction: column;
+    justify-content: flex-start;
     gap: 4px;
-    position: relative;
+    min-height: unset !important;
+    height: auto !important;
+    box-sizing: border-box;
 }
 
-/* Field labels */
+/* ── col-3 fields: roughly 4 per row ── */
+main .form fieldset.accordion .field-wrapper.col-3 {
+    flex: 1 1 calc(25% - 10px);
+    min-width: 160px;
+}
+
+/* ── col-12 fields: full width ── */
+main .form fieldset.accordion .field-wrapper.col-12.text-wrapper,
+main .form fieldset.accordion .field-wrapper.col-12.date-wrapper {
+    flex: 1 1 100%;
+}
+
+/* ── Field labels ── */
 main .form fieldset.accordion .field-wrapper .field-label {
     font-size: 11px;
     font-weight: 400;
     color: #8a94b2;
-    text-transform: none;
     margin-bottom: 2px;
-    letter-spacing: 0.01em;
+    display: block;
 }
 
-/* Hide actual input fields — values shown via .loan-display-value */
+/* ── Hide raw inputs ── */
 main .form fieldset.accordion .field-wrapper input[type="text"] {
     display: none !important;
 }
 
-/* Display value span (bold value text) */
-main .form fieldset.accordion .loan-display-value {
-    font-size: 14px;
-    font-weight: 600;
-    color: #1a2a6c;
-    display: block;
-    line-height: 1.3;
-}
-
-/* "Click here" link style */
-main .form fieldset.accordion .loan-display-value.is-link {
-    color: #1c3fca;
-    text-decoration: underline;
-    cursor: pointer;
-    font-weight: 500;
-}
-
-/* Fields WITHOUT .loan-display-value (Personal Details) — show input */
+/* ── Show inputs for Personal Details (no .loan-display-value present) ── */
 main .form fieldset.accordion .field-wrapper:not(:has(.loan-display-value)) input[type="text"] {
     display: block !important;
     border: none;
@@ -163,17 +160,29 @@ main .form fieldset.accordion .field-wrapper:not(:has(.loan-display-value)) inpu
     width: 100%;
 }
 
-/* Full-width fields (Current Address, Residence Type) */
-main .form fieldset.accordion .field-wrapper.col-12.text-wrapper {
-    grid-column: 1 / -1;
+/* ── Display value (bold text under label) ── */
+main .form fieldset.accordion .loan-display-value {
+    font-size: 14px;
+    font-weight: 600;
+    color: #1a2a6c;
+    display: block;
+    line-height: 1.4;
 }
 
-/* Inner fieldset layout — 4-column grid */
-main .form fieldset.accordion fieldset .field-wrapper {
-    margin-bottom: 10px;
+/* ── "Click here" link style ── */
+main .form fieldset.accordion .loan-display-value.is-link {
+    color: #1c3fca;
+    text-decoration: underline;
+    cursor: pointer;
+    font-weight: 500;
 }
 
-/* Confirm button */
+/* ── Confirm button ── */
+main .form fieldset.accordion .submit-wrapper {
+    flex: 1 1 100%;
+    padding: 4px 0 0 !important;
+}
+
 main .form fieldset.accordion .submit-wrapper button.button {
     background: #7a9fd4;
     color: #ffffff;
@@ -185,7 +194,6 @@ main .form fieldset.accordion .submit-wrapper button.button {
     cursor: pointer;
     letter-spacing: 0.02em;
     transition: background 0.2s ease;
-    margin-top: 8px;
 }
 
 main .form fieldset.accordion .submit-wrapper button.button:hover {
