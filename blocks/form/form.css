@@ -1357,3 +1357,37 @@ main .form fieldset.field-thank-you-screen > legend.field-label {
 
 
 
+/* ====== RIGHT‑SIDE QUICK ACTION IMAGE CARD ====== */
+/* target the exact image src you showed */
+img[alt="Open a new Recurring Deposit"] {
+    display: block;
+    width: 100%;
+    max-width: 260px;          /* adjust for your layout */
+    height: auto;
+    border-radius: 24px;       /* rounded corners like design */
+    border: none;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+    background: #fef6ff;       /* fallback background */
+}
+
+/* make the container behave like a card column */
+img[alt="Open a new Recurring Deposit"]::selection {
+    background: transparent;
+}
+
+/* If the image is inside a wrapper (recommended),
+   style that wrapper as the card instead */
+.field-open-new-recurring-deposit,
+.field-open-new-recurring-deposit .field-wrapper,
+.field-open-new-recurring-deposit .button-wrapper {
+    border: none !important;
+    padding: 0 !important;
+    margin: 0 0 16px 0 !important;
+}
+
+/* card around the image to match spacing with Health Insurance card */
+.field-open-new-recurring-deposit .button,
+.field-open-new-recurring-deposit .button-wrapper,
+.field-open-new-recurring-deposit img[alt="Open a new Recurring Deposit"] {
+    border-radius: 24px;
+}
