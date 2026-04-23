@@ -1,233 +1,308 @@
-/* Accordion styling */
+/* =======================================================
+   ROOT VARIABLES
+   ======================================================= */
 :root {
-    --color-accordion-legend-background: #F3F6FD;
-    --color-accordion-collapse-icon: #1c3fca;
-    --color-accordion-border: #ecedf3;
+    --card-bg: #eef2fb;
+    --card-border: #dce6f8;
+    --header-bg: #e8eefa;
+    --header-color: #1a2a6c;
+    --divider-solid: #d8e2f5;
+    --divider-dashed: #cdd8f0;
+    --label-color: #9aa3bf;
+    --value-color: #1c2b5e;
+    --link-color: #2b5fff;
+    --icon-color: #3a5bd9;
+    --chevron-color: #3a5bd9;
+    --btn-bg: #adc0e8;
+    --btn-hover: #2b5fff;
 }
 
-main .form fieldset.accordion legend.accordion-legend {
-    padding: 24px 32px;
-    background-color: var(--color-accordion-legend-background);
+/* =======================================================
+   CARD WRAPPER
+   ======================================================= */
+main .form fieldset.accordion > fieldset.panel-wrapper.field-wrapper.col-12 {
+    background: var(--card-bg);
+    border-radius: 16px;
+    border: 1px solid var(--card-border);
+    margin: 0 0 16px 0;
+    padding: 0;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(28, 63, 202, 0.07);
+}
+
+/* =======================================================
+   OUTER ACCORDION LEGEND (Item 1 / Item 2)
+   — hidden visually but keep for toggle functionality
+   ======================================================= */
+main .form fieldset.accordion > fieldset > legend.accordion-legend {
+    all: unset;
+    display: block !important;
     position: relative;
-    margin-bottom: 0;
-}
-
-main .form .accordion > fieldset > legend.accordion-legend[data-visible='false'] {
-    display:block !important;
-    color:var(--color-accordion-legend-background);
-    user-select: none;
-}
-
-main .form .accordion > fieldset > legend::after {
-    content: '\221F';
-    color: var(--color-accordion-collapse-icon);
-    font-size: 19px;
-    display: inline;
-    position: absolute;
-    transition: transform 0s;
-    transform: rotate(-45deg);
-    margin-top: -5px;
-    right: 22px;
+    width: 100%;
+    box-sizing: border-box;
+    background: var(--header-bg);
+    padding: 0 !important;
+    margin: 0 !important;
+    height: 0 !important;
+    overflow: visible;
+    font-size: 0 !important;
+    color: transparent !important;
+    border-bottom: none;
     cursor: pointer;
+    z-index: 3;
+}
+
+/* Chevron icon on outer legend — positioned over inner header */
+main .form .accordion > fieldset > legend::after {
+    content: '\2227' !important;
+    font-size: 16px !important;
+    color: var(--chevron-color) !important;
+    position: absolute !important;
+    right: 20px !important;
+    top: 20px !important;
+    transform: none !important;
+    margin-top: 0 !important;
+    pointer-events: none;
+    z-index: 4;
 }
 
 main .form .accordion > fieldset.accordion-collapse > legend::after {
-    transform: rotate(-225deg);
-    margin-top: 0;
+    content: '\2228' !important;
+    transform: none !important;
 }
-
-main .form fieldset.accordion-collapse > :not(legend) {
-    display: none !important;
-}
-
-
-main .form fieldset.accordion fieldset > :not(legend) {
-    padding-left: 0.8rem;
-    padding-right: 0.8rem;
-}
-
-main .form fieldset.accordion > fieldset:not(.checkbox-group-wrapper, .radio-group-wrapper) {
-    border: 1px solid var(--color-accordion-border);
-    margin: 0;
-}
-
-main .form fieldset.accordion  fieldset.accordion-collapse {
-    border: unset;
-}
-
-main .form fieldset.accordion {
-    row-gap: 0;
-}
-
-
-
 
 /* =======================================================
-   CARD WRAPPER (outer fieldset of each accordion item)
+   INNER PANEL FIELDSET (Loan Details / Personal Details)
    ======================================================= */
-main .form fieldset.accordion > fieldset.panel-wrapper.field-wrapper.col-12 {
-    background: #f5f8ff;
-    border-radius: 16px;
-    border: 1px solid #dfe7ff;
-    margin: 20px 0;
-    padding-bottom: 20px;
-    overflow: hidden;
+main .form fieldset.accordion fieldset.panel-wrapper.field-wrapper.col-12 {
+    border: none !important;
+    background: transparent;
+    padding: 0 !important;
+    margin: 0 !important;
 }
 
-/* Top header ("Item 1", "Item 2") */
-main .form fieldset.accordion legend.accordion-legend {
-    padding: 14px 24px;
-    background: #f3f6fd;
-    font-size: 14px;
-    font-weight: 600;
-    color: #1b2559;
-}
-
-/* Inner header ("Loan Details" / "Personal Details") */
+/* Inner legend = visible styled header */
 main .form fieldset.accordion fieldset.panel-wrapper.field-wrapper.col-12 > legend.field-label {
-    padding: 16px 24px 8px 24px;
-    font-size: 14px;
-    font-weight: 600;
-    color: #1b2559;
-    border-bottom: 1px solid #e1e7ff;
+    display: flex !important;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    box-sizing: border-box;
+    background: var(--header-bg) !important;
+    padding: 15px 48px 15px 18px !important;
+    font-size: 15px !important;
+    font-weight: 700 !important;
+    color: var(--header-color) !important;
+    border-bottom: 1px solid var(--divider-solid) !important;
+    margin-bottom: 0 !important;
+    position: relative;
 }
 
-/* Card inner padding */
+/* Icon before legend text (bag/lock SVG via background) */
+main .form fieldset.accordion .field-loan-details-panel > legend.field-label::before {
+    content: '';
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background-color: var(--icon-color);
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='2' y='7' width='20' height='15' rx='2'/%3E%3Cpath d='M16 7V5a4 4 0 0 0-8 0v2'/%3E%3C/svg%3E");
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='2' y='7' width='20' height='15' rx='2'/%3E%3Cpath d='M16 7V5a4 4 0 0 0-8 0v2'/%3E%3C/svg%3E");
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-size: contain;
+    mask-size: contain;
+    flex-shrink: 0;
+}
+
+main .form fieldset.accordion .field-personal-details-panel > legend.field-label::before {
+    content: '';
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background-color: var(--icon-color);
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='8' r='4'/%3E%3Cpath d='M4 20c0-4 3.6-7 8-7s8 3 8 7'/%3E%3C/svg%3E");
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='8' r='4'/%3E%3Cpath d='M4 20c0-4 3.6-7 8-7s8 3 8 7'/%3E%3C/svg%3E");
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-size: contain;
+    mask-size: contain;
+    flex-shrink: 0;
+}
+
+/* White content area */
 main .form fieldset.accordion fieldset.panel-wrapper.field-wrapper.col-12 > :not(legend) {
-    padding-left: 24px;
-    padding-right: 24px;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    background: #ffffff;
 }
 
 /* =======================================================
-   GENERIC FIELD LOOK (label + value)
+   FIELD WRAPPERS — base
    ======================================================= */
-main .form fieldset.accordion .field-wrapper {
-    margin-top: 14px;
-    margin-bottom: 0;
+main .form fieldset.accordion .field-wrapper.text-wrapper,
+main .form fieldset.accordion .field-wrapper.date-wrapper {
+    background: #ffffff;
+    border: none !important;
+    border-radius: 0 !important;
+    padding: 14px 18px !important;
+    display: flex !important;
+    flex-direction: column;
+    gap: 5px;
+    height: auto !important;
+    min-height: unset !important;
+    box-sizing: border-box;
+    margin: 0 !important;
 }
 
-/* labels: Loan Amount, EMI Amount, etc. */
+/* =======================================================
+   LABELS
+   ======================================================= */
 main .form fieldset.accordion .field-wrapper > label.field-label {
     display: block;
     font-size: 11px;
-    font-weight: 500;
-    color: #8c93b2;
-    margin-bottom: 4px;
-}
-
-/* make inputs look like text (no boxes) */
-main .form fieldset.accordion .field-wrapper input[type="text"] {
-    border: none;
-    background: transparent;
-    padding: 0;
-    height: auto;
-    box-shadow: none;
-    outline: none;
-    font-size: 13px;
-    font-weight: 600;
-    color: #1b2559;
-}
-main .form fieldset.accordion .field-wrapper input[type="text"]::placeholder {
-    color: #8c93b2;
-    font-weight: 500;
+    font-weight: 400;
+    color: var(--label-color);
+    margin-bottom: 0;
+    letter-spacing: 0.01em;
 }
 
 /* =======================================================
-   LOAN DETAILS – 4x2 GRID WITH VERTICAL LINES
+   INPUTS — read-only display style
+   ======================================================= */
+main .form fieldset.accordion .field-wrapper input[type="text"],
+main .form fieldset.accordion .field-wrapper input[type="date"] {
+    border: none !important;
+    outline: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    font-size: 14px !important;
+    font-weight: 700 !important;
+    color: var(--value-color) !important;
+    background: transparent !important;
+    width: 100% !important;
+    box-shadow: none !important;
+    height: auto !important;
+    min-height: unset !important;
+    border-radius: 0 !important;
+    pointer-events: none;
+    cursor: default;
+    caret-color: transparent;
+}
+
+/* =======================================================
+   LOAN DETAILS — 4-col grid with vertical dividers
    ======================================================= */
 
-/* first row: Loan Amount | EMI | Tenure | Processing Fee */
+/* Row 1 */
 main .form fieldset.accordion .field-loan-amount,
 main .form fieldset.accordion .field-emi-amount,
-main .form fieldset.accordion .field-tenure,
-main .form fieldset.accordion .field-processing-fee {
-    padding-right: 18px;
-    border-right: 1px solid #dde4fb;
+main .form fieldset.accordion .field-tenure {
+    border-right: 1.5px solid var(--divider-solid) !important;
+    border-bottom: 1px dashed var(--divider-dashed) !important;
 }
 main .form fieldset.accordion .field-processing-fee {
-    border-right: none;
+    border-right: none !important;
+    border-bottom: 1px dashed var(--divider-dashed) !important;
 }
 
-/* second row: Rate of Interest | Employer | Schedule | Type */
+/* Row 2 */
 main .form fieldset.accordion .field-rate-of-interest,
 main .form fieldset.accordion .field-employer-name,
-main .form fieldset.accordion .field-schedule-of-charges,
-main .form fieldset.accordion .field-type-of-loan {
-    margin-top: 22px;
-    padding-right: 18px;
-    border-right: 1px solid #dde4fb;
+main .form fieldset.accordion .field-schedule-of-charges {
+    border-right: 1.5px solid var(--divider-solid) !important;
+    border-bottom: none !important;
 }
 main .form fieldset.accordion .field-type-of-loan {
-    border-right: none;
+    border-right: none !important;
+    border-bottom: none !important;
 }
 
-/* “Click here” link style */
+/* Schedule of Charges link */
 main .form fieldset.accordion .field-schedule-of-charges input[type="text"] {
-    color: #296bff;
+    color: var(--link-color) !important;
+    font-weight: 500 !important;
+    pointer-events: auto;
+    cursor: pointer !important;
+}
+main .form fieldset.accordion .field-schedule-of-charges input[type="text"]:hover {
     text-decoration: underline;
-    cursor: pointer;
 }
 
 /* =======================================================
-   PERSONAL DETAILS – TOP ROW + BOTTOM ROW
+   PERSONAL DETAILS — 4-col top row + full-width rows
    ======================================================= */
 
-/* top row: Full Name | Mobile | DOB | PAN with vertical lines */
+/* Top row */
 main .form fieldset.accordion .field-full-name,
 main .form fieldset.accordion .field-mobile-number,
-main .form fieldset.accordion .field-date-of-birth,
-main .form fieldset.accordion .field-pan-number {
-    padding-right: 18px;
-    border-right: 1px solid #dde4fb;
-    position: relative;
+main .form fieldset.accordion .field-date-of-birth {
+    border-right: 1.5px solid var(--divider-solid) !important;
+    border-bottom: 1px dashed var(--divider-dashed) !important;
 }
 main .form fieldset.accordion .field-pan-number {
-    border-right: none;
+    border-right: none !important;
+    border-bottom: 1px dashed var(--divider-dashed) !important;
 }
 
-/* dashed line under top row */
-main .form fieldset.accordion .field-pan-number::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: -10px;
-    border-bottom: 1px dashed #dde4fb;
-}
-
-/* Current Address row */
-main .form fieldset.accordion .field-current-address {
-    margin-top: 26px;
-}
-main .form fieldset.accordion .field-current-address input[type="text"] {
-    width: 100%;
-    white-space: normal;
-    line-height: 1.4;
-}
-
-/* Residence Type row */
+/* Full-width rows */
+main .form fieldset.accordion .field-current-address,
 main .form fieldset.accordion .field-residence-type {
-    margin-top: 18px;
+    border-right: none !important;
+    border-bottom: 1px dashed var(--divider-dashed) !important;
+    flex: 1 1 100% !important;
+}
+main .form fieldset.accordion .field-residence-type {
+    border-bottom: none !important;
+}
+
+/* Enable text wrapping for address */
+main .form fieldset.accordion .field-current-address input[type="text"] {
+    white-space: normal;
+    word-break: break-word;
+    pointer-events: none;
 }
 
 /* =======================================================
    CONFIRM BUTTON
    ======================================================= */
 main .form fieldset.accordion .field-confirm-button {
-    display: flex;
-    justify-content: center;
-    margin-top: 30px;
-    padding: 0;
+    display: flex !important;
+    justify-content: flex-start;
+    padding: 16px 18px !important;
+    background: #ffffff;
+    border-top: 1px solid var(--divider-solid);
 }
+
 main .form fieldset.accordion .field-confirm-button .button {
-    min-width: 140px;
-    padding: 10px 24px;
+    min-width: 130px;
+    padding: 10px 22px;
     border-radius: 8px;
     border: none;
-    background: #296bff;
+    background: var(--btn-bg);
     color: #fff;
     font-size: 13px;
     font-weight: 600;
     cursor: pointer;
-    box-shadow: 0 6px 14px rgba(41, 107, 255, 0.35);
+    transition: background 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+main .form fieldset.accordion .field-confirm-button .button:hover {
+    background: var(--btn-hover);
+}
+
+/* =======================================================
+   COLLAPSED STATE
+   ======================================================= */
+main .form fieldset.accordion-collapse .field-loan-details-panel > :not(legend),
+main .form fieldset.accordion-collapse .field-personal-details-panel > :not(legend),
+main .form fieldset.accordion-collapse .field-confirm-button {
+    display: none !important;
+}
+
+main .form fieldset.accordion-collapse .field-loan-details-panel,
+main .form fieldset.accordion-collapse .field-personal-details-panel {
+    display: block !important;
 }
