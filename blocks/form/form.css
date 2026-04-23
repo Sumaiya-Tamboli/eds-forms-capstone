@@ -1357,3 +1357,33 @@ main .form fieldset.field-thank-you-screen > legend.field-label {
 
 
 
+/* KYC verification info bar – match reference exactly */
+.field-kyc-verification-message {
+    box-sizing: border-box;
+    width: 100%;
+
+    /* position relative to page content */
+    margin: 0 0 24px 0;          /* small gap below the bar */
+    padding: 10px 24px 9px 24px; /* vertical padding slightly smaller */
+
+    /* look & feel */
+    background-color: #fff5df;   /* warm cream */
+    border-radius: 0 0 18px 18px;/* only bottom corners rounded */
+    border: 1px solid #f2dfb4;   /* subtle outline */
+    border-top-width: 0;         /* no border on top edge */
+
+    /* subtle shadow like the reference */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+
+    /* make it sit flush under dark blue header */
+    position: relative;
+}
+
+/* Text inside the bar */
+.field-kyc-verification-message p {
+    margin: 0;
+    font-size: 13px;
+    line-height: 1.4;
+    color: #7b839f;               /* grey‑blue text like in design */
+    text-align: left;
+}
