@@ -1033,3 +1033,299 @@ button.button:hover {
     font-size: 16px;
   }
 }
+
+
+
+
+
+
+/* ============= COMMON LAYOUT FOR THANK YOU SCREEN ============= */
+
+main .form fieldset.field-thank-you-screen {
+    border: none;
+    padding: 0;
+    margin-top: 16px;
+}
+
+/* Hide legend "Thank you screen" */
+main .form fieldset.field-thank-you-screen > legend.field-label {
+    display: none;
+}
+
+/* Top info bar (KYC message) */
+.field-kyc-verification-message {
+    margin: 0 0 16px 0;
+    padding: 10px 16px;
+    background: #fff7e5;
+    border-radius: 0 0 12px 12px;
+    border-top: 6px solid #011b5e;
+    border-bottom: 1px solid #f4e1b7;
+}
+
+.field-kyc-verification-message p {
+    margin: 0;
+    font-size: 13px;
+    color: #4f4f4f;
+}
+
+/* Two‑column layout: left details, right quick actions */
+.field-thank-you-screen {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    column-gap: 24px;
+}
+
+/* Make it stack on small screens */
+@media (max-width: 900px) {
+    .field-thank-you-screen {
+        grid-template-columns: 1fr;
+        row-gap: 20px;
+    }
+}
+
+/* ============= LEFT COLUMN : LOAN APPLICATION DETAILS ============= */
+
+.field-loan-application-details-panel {
+    background: #ffffff;
+    border-radius: 22px;
+    border: 1px solid #e4ebff;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+    padding: 24px 24px 20px 24px;
+}
+
+/* hide legend text, we show label inside instead */
+.field-loan-application-details-panel > legend.field-label {
+    display: none;
+}
+
+/* Icon + "Loan Application Number" header row */
+.field-loan-application-number {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 8px;
+}
+
+.field-loan-application-number > label.field-label {
+    order: 2;
+    margin: 0;
+    font-size: 13px;
+    font-weight: 500;
+    color: #9aa2c1;
+}
+
+/* circular purple icon on the left */
+.field-loan-application-number::before {
+    content: "";
+    order: 1;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 20%, #fef6ff 0%, #e0d4ff 40%, #bfa2ff 100%);
+}
+
+/* the input is the big number */
+.field-loan-application-number input[type="text"] {
+    order: 3;
+    border: none;
+    background: transparent;
+    font-size: 22px;
+    font-weight: 700;
+    color: #1d2340;
+    padding: 0;
+    margin: 0;
+}
+
+/* small gray text "We may call…" */
+.field-contact-note {
+    margin: 0 0 16px 52px; /* aligned under the number label */
+}
+
+.field-contact-note p {
+    margin: 0;
+    font-size: 13px;
+    color: #8e98b8;
+}
+
+/* ===== Xpress Personal Loan Summary block ===== */
+
+.field-xpress-personal-loan-summary-panel {
+    border-radius: 0 0 18px 18px;
+    border-top: 1px dashed #e4ebff;
+    margin-top: 8px;
+    padding-top: 16px;
+}
+
+/* legend becomes section title */
+.field-xpress-personal-loan-summary-panel > legend.field-label {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #1d2340;
+}
+
+/* Loan Amount row with left blue vertical line */
+.field-xpress-personal-loan-summary-panel .field-loan-amount {
+    position: relative;
+    padding-left: 20px;
+}
+
+.field-xpress-personal-loan-summary-panel .field-loan-amount::before {
+    content: "";
+    position: absolute;
+    left: 2px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(180deg, #2357ff 0%, #7aa3ff 100%);
+}
+
+/* label "Loan Amount" */
+.field-xpress-personal-loan-summary-panel .field-loan-amount > label.field-label {
+    font-size: 11px;
+    font-weight: 500;
+    color: #9aa2c1;
+    margin-bottom: 2px;
+}
+
+/* value input styled as text */
+.field-xpress-personal-loan-summary-panel .field-loan-amount input[type="text"] {
+    border: none;
+    background: transparent;
+    font-size: 18px;
+    font-weight: 700;
+    color: #1d2340;
+    padding: 0;
+    margin: 0;
+}
+
+/* ============= RIGHT COLUMN : QUICK ACTIONS CARDS ============= */
+
+.field-quick-actions-panel {
+    border: none;
+    padding: 0;
+}
+
+/* hide default legend */
+.field-quick-actions-panel > legend.field-label {
+    display: none;
+}
+
+.field-quick-actions-panel .field-wrapper {
+    margin: 0 0 16px 0;
+}
+
+/* quick action button -> card */
+.field-quick-actions-panel .field-wrapper .button {
+    width: 100%;
+    text-align: left;
+    border-radius: 22px;
+    border: none;
+    padding: 20px 18px 18px 18px;
+    font-size: 14px;
+    font-weight: 700;
+    color: #1d2340;
+    cursor: pointer;
+    display: block;
+    white-space: normal;
+}
+
+/* first card (Recurring Deposit) – purple gradient */
+.field-open-new-recurring-deposit .button {
+    background: linear-gradient(135deg, #ffe6ff 0%, #f6ccff 60%, #f0b5ff 100%);
+}
+
+/* second card (Health Insurance) – pink gradient */
+.field-buy-new-health-insurance .button {
+    background: linear-gradient(135deg, #ffe5f3 0%, #ffcfe4 60%, #ffbdd9 100%);
+}
+
+/* ============= NOTES & EASY LOAN MANAGEMENT ============= */
+
+/* disbursement note text */
+.field-disbursement-note {
+    margin: 18px 0;
+}
+
+.field-disbursement-note p {
+    margin: 0;
+    font-size: 12px;
+    color: #5671c4;
+}
+
+/* Easy Loan Management card */
+.field-easy-loan-management-panel {
+    border-radius: 18px;
+    border: 1px solid #e4ebff;
+    background: linear-gradient(180deg, #eef3ff 0%, #f5f7ff 100%);
+    padding: 0;
+    overflow: hidden;
+}
+
+/* heading strip with plus icon + title */
+.field-easy-loan-management-panel > legend.field-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 18px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #1d2340;
+    background: linear-gradient(90deg, #e5edff 0%, #d9e6ff 100%);
+}
+
+.field-easy-loan-management-panel > legend.field-label::before {
+    content: "+";
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 1px solid #8aa5ff;
+    color: #3a5dff;
+    font-weight: 700;
+    font-size: 14px;
+    text-align: center;
+    line-height: 18px;
+}
+
+/* body text / button inside */
+.field-easy-loan-management-panel .field-download-mobile-banking-app {
+    padding: 14px 18px 18px;
+}
+
+.field-easy-loan-management-panel .field-download-mobile-banking-app .button {
+    background: none;
+    border: none;
+    padding: 0;
+    font-size: 13px;
+    font-weight: 400;
+    color: #1d2340;
+}
+
+/* link part in that sentence (use <span> or <strong> if you can) */
+.field-easy-loan-management-panel .field-download-mobile-banking-app .button span,
+.field-easy-loan-management-panel .field-download-mobile-banking-app .button strong {
+    color: #2357ff;
+    font-weight: 600;
+    text-decoration: underline;
+}
+
+/* bottom note */
+.field-more-services-note {
+    margin-top: 16px;
+}
+
+.field-more-services-note p {
+    margin: 0;
+    font-size: 12px;
+    color: #6a7290;
+}
+
+/* style inner link text if you wrap "HDFC Bank Website" in <span> or <a> */
+.field-more-services-note a,
+.field-more-services-note span {
+    color: #2357ff;
+    font-weight: 600;
+    text-decoration: underline;
+}
