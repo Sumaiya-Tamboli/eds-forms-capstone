@@ -325,3 +325,87 @@ main .form fieldset.accordion .field-confirm-button .button:hover {
     background: var(--btn-hover);
     box-shadow: 0 4px 14px rgba(43, 95, 255, 0.3);
 }
+
+
+/* =======================================================
+   FIELD WRAPPERS — left border ONLY per field height
+   Remove border-left from field, use padding + pseudo instead
+   ======================================================= */
+
+/* col-3 fields */
+main .form fieldset.accordion .field-wrapper.text-wrapper.col-3,
+main .form fieldset.accordion .field-wrapper.date-wrapper.col-3 {
+    background: #ffffff;
+    border: none !important;
+    border-radius: 0 !important;
+    padding: 12px 20px !important;
+    display: flex !important;
+    flex-direction: column;
+    gap: 5px;
+    height: auto !important;
+    min-height: unset !important;
+    box-sizing: border-box;
+    margin: 0 !important;
+    width: 25% !important;
+    flex: 0 0 25% !important;
+    position: relative;
+    /* Remove border-left — use box-shadow for per-field left line */
+    border-left: none !important;
+    box-shadow: -2px 0 0 0 #c5d5f5;
+}
+
+/* col-12 full-width fields */
+main .form fieldset.accordion .field-wrapper.text-wrapper.col-12,
+main .form fieldset.accordion .field-wrapper.date-wrapper.col-12 {
+    background: #ffffff;
+    border: none !important;
+    border-radius: 0 !important;
+    padding: 12px 20px !important;
+    display: flex !important;
+    flex-direction: column;
+    gap: 5px;
+    height: auto !important;
+    min-height: unset !important;
+    box-sizing: border-box;
+    margin: 0 !important;
+    width: 100% !important;
+    flex: 0 0 100% !important;
+    border-left: none !important;
+    box-shadow: -2px 0 0 0 #c5d5f5;
+}
+
+/* =======================================================
+   ROW SEPARATORS — dashed bottom between rows
+   ======================================================= */
+
+/* Loan Details row 1 */
+main .form fieldset.accordion .field-loan-amount,
+main .form fieldset.accordion .field-emi-amount,
+main .form fieldset.accordion .field-tenure,
+main .form fieldset.accordion .field-processing-fee {
+    border-bottom: 1px dashed #dde8f8 !important;
+}
+
+/* Loan Details row 2 */
+main .form fieldset.accordion .field-employer-name,
+main .form fieldset.accordion .field-schedule-of-charges,
+main .form fieldset.accordion .field-type-of-loan,
+main .form fieldset.accordion .field-rate-of-interest {
+    border-bottom: none !important;
+}
+
+/* Personal Details row 1 */
+main .form fieldset.accordion .field-full-name,
+main .form fieldset.accordion .field-mobile-number,
+main .form fieldset.accordion .field-date-of-birth,
+main .form fieldset.accordion .field-pan-number {
+    border-bottom: 1px dashed #dde8f8 !important;
+}
+
+/* Full-width rows */
+main .form fieldset.accordion .field-current-address {
+    border-bottom: 1px dashed #dde8f8 !important;
+}
+main .form fieldset.accordion .field-residence-type {
+    border-bottom: none !important;
+}
