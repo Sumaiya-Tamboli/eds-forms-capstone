@@ -1391,3 +1391,35 @@ img[alt="Open a new Recurring Deposit"]::selection {
 .field-open-new-recurring-deposit img[alt="Open a new Recurring Deposit"] {
     border-radius: 24px;
 }
+
+
+/* ===============================
+   QUICK ACTION CARD – HEALTH INSURANCE
+   =============================== */
+
+/* image itself: rounded card with soft shadow */
+img[alt="Buy a new Health Insurance"] {
+    display: block;
+    width: 100%;
+    max-width: 260px;                 /* adjust if your column is narrower */
+    height: auto;
+    border-radius: 24px;              /* same rounding as design */
+    border: none;
+    background-color: #ffe7f2;        /* light pink background, like mock */
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+}
+
+/* optional: if the image sits inside a wrapper, remove any extra padding/border
+   so the card edge is exactly the image edge */
+.field-buy-new-health-insurance,
+.field-buy-new-health-insurance .field-wrapper,
+.field-buy-new-health-insurance .button-wrapper {
+    padding: 0 !important;
+    margin: 0 0 16px 0 !important;
+    border: none !important;
+}
+
+/* ensure the card corners are not clipped by parent */
+.field-buy-new-health-insurance {
+    overflow: visible;
+}
