@@ -29,10 +29,11 @@ main .form fieldset.accordion > fieldset.field-personal-details {
     overflow: hidden;
     box-shadow: 0 2px 12px rgba(28, 63, 202, 0.07);
     position: relative;
+    row-gap: 0 !important;
 }
 
 /* =======================================================
-   HEADER LEGEND — "Loan Details" / "Personal Details"
+   HEADER LEGEND
    ======================================================= */
 main .form fieldset.accordion > fieldset.field-loan-details > legend.accordion-legend,
 main .form fieldset.accordion > fieldset.field-personal-details > legend.accordion-legend {
@@ -42,7 +43,7 @@ main .form fieldset.accordion > fieldset.field-personal-details > legend.accordi
     width: 100% !important;
     box-sizing: border-box !important;
     background: var(--header-bg) !important;
-    padding: 15px 52px 15px 18px !important;
+    padding: 16px 52px 16px 18px !important;
     margin: 0 !important;
     font-size: 15px !important;
     font-weight: 700 !important;
@@ -54,40 +55,33 @@ main .form fieldset.accordion > fieldset.field-personal-details > legend.accordi
 }
 
 /* =======================================================
-   CHEVRON — default state = UP (panel is OPEN)
-   No accordion-collapse class = content visible = arrow up
+   CHEVRON — UP when open (no accordion-collapse)
    ======================================================= */
 main .form fieldset.accordion > fieldset.field-loan-details > legend.accordion-legend::after,
 main .form fieldset.accordion > fieldset.field-personal-details > legend.accordion-legend::after {
     content: '' !important;
     display: block;
-    width: 9px;
-    height: 9px;
+    width: 8px;
+    height: 8px;
     border-top: 2.5px solid var(--chevron-color);
     border-right: 2.5px solid var(--chevron-color);
     position: absolute;
     right: 24px;
-    top: 50%;
-    /* pointing UP = rotate -45deg, shifted down slightly */
-    transform: rotate(-45deg);
-    margin-top: 3px;
-    translate: 0 -50%;
-    transition: transform 0.25s ease, margin-top 0.25s ease;
-    margin-top: 0 !important;
+    top: calc(50% + 3px);
+    transform: rotate(-45deg) translateY(-50%);
+    transition: transform 0.25s ease, top 0.25s ease;
+    margin: 0 !important;
 }
 
-/* =======================================================
-   CHEVRON — collapsed state = DOWN arrow
-   .accordion-collapse class present = content hidden = arrow down
-   ======================================================= */
+/* CHEVRON — DOWN when collapsed */
 main .form fieldset.accordion > fieldset.field-loan-details.accordion-collapse > legend.accordion-legend::after,
 main .form fieldset.accordion > fieldset.field-personal-details.accordion-collapse > legend.accordion-legend::after {
-    transform: rotate(135deg) !important;
-    translate: 0 -70% !important;
+    transform: rotate(135deg) translateY(-50%) !important;
+    top: calc(50% - 3px) !important;
 }
 
 /* =======================================================
-   LOAN DETAILS ICON — bag/wallet
+   LOAN DETAILS ICON
    ======================================================= */
 main .form fieldset.accordion > fieldset.field-loan-details > legend.accordion-legend::before {
     content: '';
@@ -105,7 +99,7 @@ main .form fieldset.accordion > fieldset.field-loan-details > legend.accordion-l
 }
 
 /* =======================================================
-   PERSONAL DETAILS ICON — person
+   PERSONAL DETAILS ICON
    ======================================================= */
 main .form fieldset.accordion > fieldset.field-personal-details > legend.accordion-legend::before {
     content: '';
@@ -123,7 +117,31 @@ main .form fieldset.accordion > fieldset.field-personal-details > legend.accordi
 }
 
 /* =======================================================
-   INNER PANEL FIELDSET
+   COLLAPSE FIX
+   Your default CSS: fieldset.accordion-collapse > :not(legend) { display:none }
+   The inner panel IS the direct child — so it hides correctly.
+   But we must NOT set display:flex on the inner panel via a rule
+   that overrides the hidden state. Fix: scope flex only when visible.
+   ======================================================= */
+main .form fieldset.accordion > fieldset.field-loan-details:not(.accordion-collapse) .field-loan-details-panel,
+main .form fieldset.accordion > fieldset.field-personal-details:not(.accordion-collapse) .field-personal-details-panel {
+    display: flex !important;
+    flex-wrap: wrap;
+}
+
+/* When collapsed, ensure inner panel is truly hidden */
+main .form fieldset.accordion > fieldset.field-loan-details.accordion-collapse .field-loan-details-panel,
+main .form fieldset.accordion > fieldset.field-personal-details.accordion-collapse .field-personal-details-panel {
+    display: none !important;
+}
+
+/* Also hide confirm button when personal details collapsed */
+main .form fieldset.accordion > fieldset.field-personal-details.accordion-collapse .field-confirm-button {
+    display: none !important;
+}
+
+/* =======================================================
+   INNER PANEL FIELDSET — base styles
    ======================================================= */
 main .form fieldset.accordion .field-loan-details-panel,
 main .form fieldset.accordion .field-personal-details-panel {
@@ -131,18 +149,17 @@ main .form fieldset.accordion .field-personal-details-panel {
     background: #ffffff;
     padding: 0 !important;
     margin: 0 !important;
-    display: flex !important;
-    flex-wrap: wrap;
     row-gap: 0 !important;
+    width: 100%;
 }
 
-/* Hide duplicate inner legend text */
+/* Hide duplicate inner legends */
 main .form fieldset.accordion .field-loan-details-panel > legend,
 main .form fieldset.accordion .field-personal-details-panel > legend {
     display: none !important;
 }
 
-/* Reset default accordion padding */
+/* Reset default accordion padding on inner children */
 main .form fieldset.accordion .field-loan-details-panel > :not(legend),
 main .form fieldset.accordion .field-personal-details-panel > :not(legend) {
     padding-left: 0 !important;
@@ -150,21 +167,42 @@ main .form fieldset.accordion .field-personal-details-panel > :not(legend) {
 }
 
 /* =======================================================
-   FIELD WRAPPERS
+   FIELD WRAPPERS — strict 4-column via width
+   Using width % instead of flex to guarantee 4 cols
    ======================================================= */
-main .form fieldset.accordion .field-wrapper.text-wrapper,
-main .form fieldset.accordion .field-wrapper.date-wrapper {
+main .form fieldset.accordion .field-wrapper.text-wrapper.col-3,
+main .form fieldset.accordion .field-wrapper.date-wrapper.col-3 {
     background: #ffffff;
     border: none !important;
     border-radius: 0 !important;
-    padding: 13px 16px !important;
+    padding: 14px 16px !important;
     display: flex !important;
     flex-direction: column;
-    gap: 5px;
+    gap: 6px;
     height: auto !important;
     min-height: unset !important;
     box-sizing: border-box;
     margin: 0 !important;
+    width: 25% !important;
+    flex: 0 0 25% !important;
+}
+
+/* Full-width col-12 fields */
+main .form fieldset.accordion .field-wrapper.text-wrapper.col-12,
+main .form fieldset.accordion .field-wrapper.date-wrapper.col-12 {
+    background: #ffffff;
+    border: none !important;
+    border-radius: 0 !important;
+    padding: 14px 16px !important;
+    display: flex !important;
+    flex-direction: column;
+    gap: 6px;
+    height: auto !important;
+    min-height: unset !important;
+    box-sizing: border-box;
+    margin: 0 !important;
+    width: 100% !important;
+    flex: 0 0 100% !important;
 }
 
 /* =======================================================
@@ -173,17 +211,16 @@ main .form fieldset.accordion .field-wrapper.date-wrapper {
 main .form fieldset.accordion .field-wrapper > label.field-label {
     display: block !important;
     font-size: 11px !important;
-    font-weight: 400 !important;
+    font-weight: 500 !important;
     color: var(--label-color) !important;
     margin-bottom: 0 !important;
-    letter-spacing: 0.01em;
+    letter-spacing: 0.02em;
     line-height: 1.3;
     text-transform: none !important;
 }
 
 /* =======================================================
-   INPUTS — styled but FULLY EDITABLE
-   pointer-events: auto so users can click and type
+   INPUTS — editable, clean look
    ======================================================= */
 main .form fieldset.accordion .field-wrapper input[type="text"],
 main .form fieldset.accordion .field-wrapper input[type="date"] {
@@ -200,28 +237,33 @@ main .form fieldset.accordion .field-wrapper input[type="date"] {
     height: auto !important;
     min-height: unset !important;
     border-radius: 0 !important;
-    /* EDITABLE — no pointer-events block */
     pointer-events: auto !important;
     cursor: text !important;
     caret-color: var(--value-color);
 }
 
-main .form fieldset.accordion .field-wrapper input[type="text"]:focus,
-main .form fieldset.accordion .field-wrapper input[type="date"]:focus {
-    outline: none !important;
-    box-shadow: none !important;
-}
-
-main .form fieldset.accordion .field-wrapper input[type="text"]::placeholder {
+main .form fieldset.accordion .field-wrapper input::placeholder {
     color: var(--label-color);
     font-weight: 400;
 }
 
+main .form fieldset.accordion .field-wrapper input:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
 /* =======================================================
-   LOAN DETAILS — row 1 dividers
+   LOAN DETAILS — VERTICAL DIVIDERS + DASHED ROW SEPARATOR
+   Row 1: Loan Amount | EMI Amount | Tenure | Processing Fee
    ======================================================= */
-main .form fieldset.accordion .field-loan-amount,
-main .form fieldset.accordion .field-emi-amount,
+main .form fieldset.accordion .field-loan-amount {
+    border-right: 1.5px solid var(--divider-solid) !important;
+    border-bottom: 1px dashed var(--divider-dashed) !important;
+}
+main .form fieldset.accordion .field-emi-amount {
+    border-right: 1.5px solid var(--divider-solid) !important;
+    border-bottom: 1px dashed var(--divider-dashed) !important;
+}
 main .form fieldset.accordion .field-tenure {
     border-right: 1.5px solid var(--divider-solid) !important;
     border-bottom: 1px dashed var(--divider-dashed) !important;
@@ -231,19 +273,25 @@ main .form fieldset.accordion .field-processing-fee {
     border-bottom: 1px dashed var(--divider-dashed) !important;
 }
 
-/* LOAN DETAILS — row 2 dividers */
-main .form fieldset.accordion .field-rate-of-interest,
-main .form fieldset.accordion .field-employer-name,
+/* Row 2: Employer Name | Schedule of Charges | Type of Loan | Rate of Interest */
+main .form fieldset.accordion .field-employer-name {
+    border-right: 1.5px solid var(--divider-solid) !important;
+    border-bottom: none !important;
+}
 main .form fieldset.accordion .field-schedule-of-charges {
     border-right: 1.5px solid var(--divider-solid) !important;
     border-bottom: none !important;
 }
 main .form fieldset.accordion .field-type-of-loan {
+    border-right: 1.5px solid var(--divider-solid) !important;
+    border-bottom: none !important;
+}
+main .form fieldset.accordion .field-rate-of-interest {
     border-right: none !important;
     border-bottom: none !important;
 }
 
-/* Schedule of Charges — blue link style */
+/* Schedule of Charges — blue link */
 main .form fieldset.accordion .field-schedule-of-charges input[type="text"] {
     color: var(--link-color) !important;
     font-weight: 600 !important;
@@ -255,9 +303,16 @@ main .form fieldset.accordion .field-schedule-of-charges input[type="text"]:hove
 
 /* =======================================================
    PERSONAL DETAILS — top row dividers
+   Row 1: Full Name | Mobile Number | Date of Birth | PAN
    ======================================================= */
-main .form fieldset.accordion .field-full-name,
-main .form fieldset.accordion .field-mobile-number,
+main .form fieldset.accordion .field-full-name {
+    border-right: 1.5px solid var(--divider-solid) !important;
+    border-bottom: 1px dashed var(--divider-dashed) !important;
+}
+main .form fieldset.accordion .field-mobile-number {
+    border-right: 1.5px solid var(--divider-solid) !important;
+    border-bottom: 1px dashed var(--divider-dashed) !important;
+}
 main .form fieldset.accordion .field-date-of-birth {
     border-right: 1.5px solid var(--divider-solid) !important;
     border-bottom: 1px dashed var(--divider-dashed) !important;
@@ -267,14 +322,12 @@ main .form fieldset.accordion .field-pan-number {
     border-bottom: 1px dashed var(--divider-dashed) !important;
 }
 
-/* Full-width fields */
+/* Full-width rows */
 main .form fieldset.accordion .field-current-address {
-    flex: 1 1 100% !important;
     border-right: none !important;
     border-bottom: 1px dashed var(--divider-dashed) !important;
 }
 main .form fieldset.accordion .field-residence-type {
-    flex: 1 1 100% !important;
     border-right: none !important;
     border-bottom: none !important;
 }
@@ -288,23 +341,25 @@ main .form fieldset.accordion .field-confirm-button {
     padding: 16px 18px !important;
     background: #ffffff;
     border-top: 1px solid var(--divider-solid);
-    flex: 0 0 100%;
+    width: 100%;
     box-sizing: border-box;
 }
 
 main .form fieldset.accordion .field-confirm-button .button {
-    min-width: 130px;
-    padding: 10px 22px;
-    border-radius: 8px;
+    min-width: 140px;
+    padding: 11px 24px;
+    border-radius: 10px;
     border: none;
     background: var(--btn-bg);
     color: #fff;
     font-size: 13px;
     font-weight: 600;
     cursor: pointer;
-    transition: background 0.2s ease;
+    transition: background 0.2s ease, box-shadow 0.2s ease;
+    letter-spacing: 0.02em;
 }
 
 main .form fieldset.accordion .field-confirm-button .button:hover {
     background: var(--btn-hover);
+    box-shadow: 0 4px 12px rgba(43, 95, 255, 0.3);
 }
