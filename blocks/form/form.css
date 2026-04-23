@@ -1354,3 +1354,34 @@ main .form fieldset.field-thank-you-screen > legend.field-label {
     color: #7b7f9a;                       /* soft grey‑blue, like design */
     text-align: left;
 }
+
+
+
+/* TOP KYC INFO BAR – match reference design */
+.field-kyc-verification-message {
+    /* full‑width cream strip that sits below the dark blue header */
+    width: 100%;
+    box-sizing: border-box;
+
+    /* spacing */
+    margin: 0 0 20px 0;
+    padding: 10px 24px;
+
+    /* background + borders */
+    background-color: #fff6e3;          /* slightly warmer cream */
+    border-radius: 0 0 18px 18px;      /* rounded only at the bottom */
+    border-top: 0;                     /* dark blue strip is separate header */
+    border-bottom: 1px solid #f0dfb6;  /* very subtle bottom line */
+
+    /* slight shadow to lift from background */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+}
+
+/* text inside the bar */
+.field-kyc-verification-message p {
+    margin: 0;
+    font-size: 13px;
+    line-height: 1.4;
+    color: #7d87a4;                    /* grey‑blue copy color like design */
+    text-align: left;
+}
