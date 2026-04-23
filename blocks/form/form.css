@@ -1423,3 +1423,123 @@ img[alt="Buy a new Health Insurance"] {
 .field-buy-new-health-insurance {
     overflow: visible;
 }
+
+
+
+/* ==============================
+   MAIN CARD: Loan Application Details
+   ============================== */
+
+.field-loan-application-details-panel {
+    border: 1px solid #e5ecff;
+    border-radius: 24px;
+    background: #ffffff;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+    padding: 24px 26px 22px 26px;
+    margin-top: 16px;
+}
+
+/* hide legend text "Loan Application Details" (not in reference) */
+.field-loan-application-details-panel > legend.field-label {
+    display: none;
+}
+
+/* ==============================
+   Loan Application Number row
+   ============================== */
+
+.field-loan-application-number {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 10px;
+}
+
+/* label above number */
+.field-loan-application-number > label.field-label {
+    margin: 0;
+    font-size: 13px;
+    font-weight: 500;
+    color: #9aa2c1;
+}
+
+/* input value as big number */
+.field-loan-application-number input[type="text"] {
+    border: none;
+    background: transparent;
+    font-size: 22px;
+    font-weight: 700;
+    color: #1b2340;
+    padding: 0;
+    margin: 0;
+    flex: 1;
+}
+
+/* ==============================
+   Contact note under number
+   ============================== */
+
+.field-contact-note {
+    margin: 0 0 18px 0;
+}
+
+.field-contact-note p {
+    margin: 0;
+    font-size: 13px;
+    color: #8e98b8;
+}
+
+/* ==============================
+   Xpress Personal Loan Summary
+   ============================== */
+
+.field-xpress-personal-loan-summary-panel {
+    border-top: 1px dashed #e5ecff;
+    margin-top: 10px;
+    padding-top: 16px;
+}
+
+/* section title */
+.field-xpress-personal-loan-summary-panel > legend.field-label {
+    display: block;
+    margin: 0 0 10px 0;
+    font-size: 14px;
+    font-weight: 600;
+    color: #1b2340;
+}
+
+/* Loan amount row with left blue bar */
+.field-xpress-personal-loan-summary-panel .field-loan-amount {
+    position: relative;
+    padding-left: 18px;
+}
+
+/* vertical blue bar */
+.field-xpress-personal-loan-summary-panel .field-loan-amount::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 2px;
+    bottom: 2px;
+    width: 2px;
+    background: linear-gradient(180deg, #2357ff 0%, #78a1ff 100%);
+}
+
+/* label "Loan Amount" */
+.field-xpress-personal-loan-summary-panel .field-loan-amount > label.field-label {
+    font-size: 11px;
+    font-weight: 500;
+    color: #9aa2c1;
+    margin-bottom: 2px;
+}
+
+/* amount value (use input value) */
+.field-xpress-personal-loan-summary-panel .field-loan-amount input[type="text"] {
+    border: none;
+    background: transparent;
+    font-size: 18px;
+    font-weight: 700;
+    color: #1b2340;
+    padding: 0;
+    margin: 0;
+}
