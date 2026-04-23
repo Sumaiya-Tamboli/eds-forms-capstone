@@ -12,7 +12,6 @@ export function handleAccordionNavigation(panel, tab, forceOpen = false) {
   }
 }
 
-
 export default function decorate(panel) {
   panel.classList.add('accordion');
   const accordionTabs = panel?.querySelectorAll(':scope > fieldset');
@@ -20,7 +19,7 @@ export default function decorate(panel) {
     tab.dataset.index = index;
     const legend = tab.querySelector(':scope > legend');
     legend?.classList.add('accordion-legend');
-    if (index !== 0) tab.classList.toggle('accordion-collapse'); // collapse all but the first tab on load
+    if (index !== 0) tab.classList.add('accordion-collapse'); // collapse all but first
     legend?.addEventListener('click', () => {
       handleAccordionNavigation(panel, tab);
     });

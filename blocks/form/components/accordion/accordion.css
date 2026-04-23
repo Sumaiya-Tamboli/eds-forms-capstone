@@ -17,7 +17,7 @@
 }
 
 /* =======================================================
-   CARD WRAPPER — .field-loan-details / .field-personal-details
+   CARD WRAPPER
    ======================================================= */
 main .form fieldset.accordion > fieldset.field-loan-details,
 main .form fieldset.accordion > fieldset.field-personal-details {
@@ -32,8 +32,7 @@ main .form fieldset.accordion > fieldset.field-personal-details {
 }
 
 /* =======================================================
-   OUTER LEGEND — "Loan Details" / "Personal Details"
-   This IS the header bar. Style it directly.
+   HEADER LEGEND — "Loan Details" / "Personal Details"
    ======================================================= */
 main .form fieldset.accordion > fieldset.field-loan-details > legend.accordion-legend,
 main .form fieldset.accordion > fieldset.field-personal-details > legend.accordion-legend {
@@ -54,7 +53,10 @@ main .form fieldset.accordion > fieldset.field-personal-details > legend.accordi
     user-select: none;
 }
 
-/* Chevron — up (expanded state) */
+/* =======================================================
+   CHEVRON — default state = UP (panel is OPEN)
+   No accordion-collapse class = content visible = arrow up
+   ======================================================= */
 main .form fieldset.accordion > fieldset.field-loan-details > legend.accordion-legend::after,
 main .form fieldset.accordion > fieldset.field-personal-details > legend.accordion-legend::after {
     content: '' !important;
@@ -63,20 +65,25 @@ main .form fieldset.accordion > fieldset.field-personal-details > legend.accordi
     height: 9px;
     border-top: 2.5px solid var(--chevron-color);
     border-right: 2.5px solid var(--chevron-color);
-    transform: rotate(-45deg);
     position: absolute;
     right: 24px;
     top: 50%;
+    /* pointing UP = rotate -45deg, shifted down slightly */
+    transform: rotate(-45deg);
+    margin-top: 3px;
     translate: 0 -50%;
-    transition: transform 0.25s ease, translate 0.25s ease;
+    transition: transform 0.25s ease, margin-top 0.25s ease;
     margin-top: 0 !important;
 }
 
-/* Chevron — down (collapsed state) */
+/* =======================================================
+   CHEVRON — collapsed state = DOWN arrow
+   .accordion-collapse class present = content hidden = arrow down
+   ======================================================= */
 main .form fieldset.accordion > fieldset.field-loan-details.accordion-collapse > legend.accordion-legend::after,
 main .form fieldset.accordion > fieldset.field-personal-details.accordion-collapse > legend.accordion-legend::after {
     transform: rotate(135deg) !important;
-    translate: 0 -70%;
+    translate: 0 -70% !important;
 }
 
 /* =======================================================
@@ -129,13 +136,13 @@ main .form fieldset.accordion .field-personal-details-panel {
     row-gap: 0 !important;
 }
 
-/* Hide inner panel legend ("Loan Details" / "Personal Details" duplicate text) */
+/* Hide duplicate inner legend text */
 main .form fieldset.accordion .field-loan-details-panel > legend,
 main .form fieldset.accordion .field-personal-details-panel > legend {
     display: none !important;
 }
 
-/* Reset default accordion padding on inner children */
+/* Reset default accordion padding */
 main .form fieldset.accordion .field-loan-details-panel > :not(legend),
 main .form fieldset.accordion .field-personal-details-panel > :not(legend) {
     padding-left: 0 !important;
@@ -161,7 +168,7 @@ main .form fieldset.accordion .field-wrapper.date-wrapper {
 }
 
 /* =======================================================
-   LABELS — small grey
+   LABELS
    ======================================================= */
 main .form fieldset.accordion .field-wrapper > label.field-label {
     display: block !important;
@@ -175,7 +182,8 @@ main .form fieldset.accordion .field-wrapper > label.field-label {
 }
 
 /* =======================================================
-   INPUTS — read-only display style
+   INPUTS — styled but FULLY EDITABLE
+   pointer-events: auto so users can click and type
    ======================================================= */
 main .form fieldset.accordion .field-wrapper input[type="text"],
 main .form fieldset.accordion .field-wrapper input[type="date"] {
@@ -184,7 +192,7 @@ main .form fieldset.accordion .field-wrapper input[type="date"] {
     padding: 0 !important;
     margin: 0 !important;
     font-size: 14px !important;
-    font-weight: 700 !important;
+    font-weight: 600 !important;
     color: var(--value-color) !important;
     background: transparent !important;
     width: 100% !important;
@@ -192,13 +200,25 @@ main .form fieldset.accordion .field-wrapper input[type="date"] {
     height: auto !important;
     min-height: unset !important;
     border-radius: 0 !important;
-    pointer-events: none;
-    cursor: default;
-    caret-color: transparent;
+    /* EDITABLE — no pointer-events block */
+    pointer-events: auto !important;
+    cursor: text !important;
+    caret-color: var(--value-color);
+}
+
+main .form fieldset.accordion .field-wrapper input[type="text"]:focus,
+main .form fieldset.accordion .field-wrapper input[type="date"]:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+main .form fieldset.accordion .field-wrapper input[type="text"]::placeholder {
+    color: var(--label-color);
+    font-weight: 400;
 }
 
 /* =======================================================
-   LOAN DETAILS — row 1 field dividers
+   LOAN DETAILS — row 1 dividers
    ======================================================= */
 main .form fieldset.accordion .field-loan-amount,
 main .form fieldset.accordion .field-emi-amount,
@@ -211,7 +231,7 @@ main .form fieldset.accordion .field-processing-fee {
     border-bottom: 1px dashed var(--divider-dashed) !important;
 }
 
-/* LOAN DETAILS — row 2 field dividers */
+/* LOAN DETAILS — row 2 dividers */
 main .form fieldset.accordion .field-rate-of-interest,
 main .form fieldset.accordion .field-employer-name,
 main .form fieldset.accordion .field-schedule-of-charges {
@@ -223,11 +243,10 @@ main .form fieldset.accordion .field-type-of-loan {
     border-bottom: none !important;
 }
 
-/* Schedule of Charges — blue clickable link */
+/* Schedule of Charges — blue link style */
 main .form fieldset.accordion .field-schedule-of-charges input[type="text"] {
     color: var(--link-color) !important;
     font-weight: 600 !important;
-    pointer-events: auto;
     cursor: pointer !important;
 }
 main .form fieldset.accordion .field-schedule-of-charges input[type="text"]:hover {
