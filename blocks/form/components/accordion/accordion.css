@@ -14,12 +14,13 @@
     --icon-color: #3a5bd9;
     --btn-bg: #adc0e8;
     --btn-hover: #2b5fff;
+    --chevron-color: #3a5bd9;
 }
 
 /* =======================================================
    CARD WRAPPER — outer fieldset per accordion item
    ======================================================= */
-main .form fieldset.accordion > fieldset.panel-wrapper.field-wrapper.col-12 {
+main .form fieldset.accordion > fieldset {
     background: #ffffff;
     border-radius: 16px !important;
     border: 1px solid var(--card-border) !important;
@@ -27,43 +28,84 @@ main .form fieldset.accordion > fieldset.panel-wrapper.field-wrapper.col-12 {
     padding: 0 !important;
     overflow: hidden;
     box-shadow: 0 2px 12px rgba(28, 63, 202, 0.07);
+    position: relative;
 }
 
 /* =======================================================
-   OUTER LEGEND (Item 1 / Item 2) — this IS the header bar
-   styled to look like "Loan Details" header
+   OUTER LEGEND (Item 1 / Item 2)
+   — this is the clickable toggle, styled as the header bar
+   — we hide the "Item 1" text and show inner panel name via
+     the inner legend which is always visible below
    ======================================================= */
 main .form fieldset.accordion > fieldset > legend.accordion-legend {
-    display: flex !important;
-    align-items: center;
-    gap: 10px;
-    width: 100% !important;
-    box-sizing: border-box !important;
+    display: block !important;
+    width: 100%;
+    box-sizing: border-box;
     background: var(--header-bg) !important;
-    padding: 15px 48px 15px 18px !important;
-    font-size: 15px !important;
-    font-weight: 700 !important;
-    color: var(--header-color) !important;
-    border-bottom: 1px solid var(--divider-solid) !important;
-    margin-bottom: 0 !important;
+    padding: 15px 52px 15px 18px !important;
+    margin: 0 !important;
     position: relative;
     cursor: pointer;
+    user-select: none;
+    /* Hide "Item 1 / Item 2" text visually */
+    font-size: 0 !important;
+    color: transparent !important;
+    /* Fixed height so header bar is visible even with font-size 0 */
+    min-height: 54px;
+    border-bottom: 1px solid var(--divider-solid);
 }
 
-/* Hide "Item 1 / Item 2" text — replace with inner legend text via data or just leave */
-/* Since we can't change HTML, we hide the text using indent trick */
-main .form fieldset.accordion > fieldset.field-panel11776837420322 > legend.accordion-legend,
-main .form fieldset.accordion > fieldset.field-panel21776837420330 > legend.accordion-legend {
-    font-size: 0 !important; /* hide "Item 1 / Item 2" */
-    padding: 0 !important;
-    height: 0 !important;
+/* Chevron — up arrow when expanded */
+main .form fieldset.accordion > fieldset > legend.accordion-legend::after {
+    content: '' !important;
+    display: block;
+    width: 9px;
+    height: 9px;
+    border-top: 2.5px solid var(--chevron-color);
+    border-right: 2.5px solid var(--chevron-color);
+    transform: rotate(-45deg);
+    position: absolute;
+    right: 24px;
+    top: 50%;
+    translate: 0 -50%;
+    transition: transform 0.25s ease;
+    margin-top: 0 !important;
+}
+
+/* Chevron — down arrow when collapsed */
+main .form fieldset.accordion > fieldset.accordion-collapse > legend.accordion-legend::after {
+    transform: rotate(135deg) !important;
+    translate: 0 -20%;
+}
+
+/* =======================================================
+   INNER PANEL FIELDSET (Loan Details / Personal Details)
+   — always block, never hidden (only outer fieldset collapses)
+   ======================================================= */
+main .form fieldset.accordion .field-loan-details-panel,
+main .form fieldset.accordion .field-personal-details-panel {
     border: none !important;
-    background: transparent !important;
-    pointer-events: auto;
+    background: #ffffff;
+    padding: 0 !important;
+    margin: 0 !important;
+    display: flex !important;
+    flex-wrap: wrap;
+    row-gap: 0 !important;
     position: relative;
 }
 
-/* The inner legend of loan-details-panel acts as the visible header */
+/* Reset default accordion padding */
+main .form fieldset.accordion .field-loan-details-panel > :not(legend),
+main .form fieldset.accordion .field-personal-details-panel > :not(legend) {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+/* =======================================================
+   INNER LEGEND — overlaid on outer legend space
+   Shows "Loan Details" / "Personal Details" + icon
+   Positioned absolutely to sit inside the outer legend bar
+   ======================================================= */
 main .form fieldset.accordion .field-loan-details-panel > legend.field-label,
 main .form fieldset.accordion .field-personal-details-panel > legend.field-label {
     display: flex !important;
@@ -71,33 +113,20 @@ main .form fieldset.accordion .field-personal-details-panel > legend.field-label
     gap: 10px;
     width: 100% !important;
     box-sizing: border-box !important;
-    background: var(--header-bg) !important;
-    padding: 15px 48px 15px 18px !important;
+    background: transparent !important;
+    padding: 0 52px 0 18px !important;
     font-size: 15px !important;
     font-weight: 700 !important;
     color: var(--header-color) !important;
-    border-bottom: 1px solid var(--divider-solid) !important;
-    margin-bottom: 0 !important;
-    position: relative;
-}
-
-/* Chevron on outer legend — positioned correctly */
-main .form .accordion > fieldset > legend.accordion-legend::after {
-    content: '\2227' !important;
-    font-size: 16px !important;
-    color: var(--chevron-color, #3a5bd9) !important;
-    position: absolute !important;
-    right: 20px !important;
-    top: 50% !important;
-    transform: translateY(-50%) !important;
-    margin-top: 0 !important;
-    pointer-events: none;
-    z-index: 4;
-    display: block !important;
-}
-
-main .form .accordion > fieldset.accordion-collapse > legend.accordion-legend::after {
-    content: '\2228' !important;
+    border-bottom: none !important;
+    margin: 0 !important;
+    /* Pull this legend up into the outer legend's space */
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 54px;
+    pointer-events: none; /* clicks pass through to outer legend */
+    z-index: 2;
 }
 
 /* =======================================================
@@ -105,10 +134,10 @@ main .form .accordion > fieldset.accordion-collapse > legend.accordion-legend::a
    ======================================================= */
 main .form fieldset.accordion .field-loan-details-panel > legend.field-label::before {
     content: '';
-    display: inline-block;
+    display: inline-flex;
     width: 20px;
     height: 20px;
-    flex-shrink: 0;
+    min-width: 20px;
     background-color: var(--icon-color);
     -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='2' y='7' width='20' height='15' rx='2'/%3E%3Cpath d='M16 7V5a4 4 0 0 0-8 0v2'/%3E%3C/svg%3E");
     mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='2' y='7' width='20' height='15' rx='2'/%3E%3Cpath d='M16 7V5a4 4 0 0 0-8 0v2'/%3E%3C/svg%3E");
@@ -123,10 +152,10 @@ main .form fieldset.accordion .field-loan-details-panel > legend.field-label::be
    ======================================================= */
 main .form fieldset.accordion .field-personal-details-panel > legend.field-label::before {
     content: '';
-    display: inline-block;
+    display: inline-flex;
     width: 20px;
     height: 20px;
-    flex-shrink: 0;
+    min-width: 20px;
     background-color: var(--icon-color);
     -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='8' r='4'/%3E%3Cpath d='M4 20c0-4 3.6-7 8-7s8 3 8 7'/%3E%3C/svg%3E");
     mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='8' r='4'/%3E%3Cpath d='M4 20c0-4 3.6-7 8-7s8 3 8 7'/%3E%3C/svg%3E");
@@ -137,35 +166,14 @@ main .form fieldset.accordion .field-personal-details-panel > legend.field-label
 }
 
 /* =======================================================
-   INNER PANEL FIELDSET wrapper
-   ======================================================= */
-main .form fieldset.accordion .field-loan-details-panel,
-main .form fieldset.accordion .field-personal-details-panel {
-    border: none !important;
-    background: #ffffff;
-    padding: 0 !important;
-    margin: 0 !important;
-    display: flex !important;
-    flex-wrap: wrap;
-    row-gap: 0 !important;
-}
-
-/* Reset default padding from your accordion CSS */
-main .form fieldset.accordion .field-loan-details-panel > :not(legend),
-main .form fieldset.accordion .field-personal-details-panel > :not(legend) {
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-}
-
-/* =======================================================
-   FIELD WRAPPERS — base style
+   FIELD WRAPPERS
    ======================================================= */
 main .form fieldset.accordion .field-wrapper.text-wrapper,
 main .form fieldset.accordion .field-wrapper.date-wrapper {
     background: #ffffff;
     border: none !important;
     border-radius: 0 !important;
-    padding: 14px 18px !important;
+    padding: 13px 16px !important;
     display: flex !important;
     flex-direction: column;
     gap: 5px;
@@ -176,7 +184,7 @@ main .form fieldset.accordion .field-wrapper.date-wrapper {
 }
 
 /* =======================================================
-   LABELS
+   LABELS — small grey
    ======================================================= */
 main .form fieldset.accordion .field-wrapper > label.field-label {
     display: block !important;
@@ -186,6 +194,7 @@ main .form fieldset.accordion .field-wrapper > label.field-label {
     margin-bottom: 0 !important;
     letter-spacing: 0.01em;
     line-height: 1.3;
+    text-transform: none !important;
 }
 
 /* =======================================================
@@ -240,7 +249,7 @@ main .form fieldset.accordion .field-type-of-loan {
 /* Schedule of Charges — blue link */
 main .form fieldset.accordion .field-schedule-of-charges input[type="text"] {
     color: var(--link-color) !important;
-    font-weight: 500 !important;
+    font-weight: 600 !important;
     pointer-events: auto;
     cursor: pointer !important;
 }
