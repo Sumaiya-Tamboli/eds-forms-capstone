@@ -1488,3 +1488,86 @@ img[alt="Buy a new Health Insurance"] {
     font-size: 13px;
     color: #8e98b8;
 }
+
+
+
+
+/* =========================================
+   Xpress Personal Loan Summary section
+   ========================================= */
+
+/* fieldset wrapper inside the white card */
+.field-xpress-personal-loan-summary-panel {
+    margin-top: 22px;               /* gap below contact note */
+    padding-top: 18px;
+    border-top: 1px dashed #e5ecff; /* faint dashed separator */
+}
+
+/* legend as section heading */
+.field-xpress-personal-loan-summary-panel > legend.field-label {
+    display: block;
+    margin: 0 0 12px 0;
+    font-size: 14px;
+    font-weight: 600;
+    color: #171f3d;
+}
+
+/* Loan Amount row with blue vertical line */
+.field-xpress-personal-loan-summary-panel .field-loan-amount {
+    position: relative;
+    padding-left: 20px;             /* space for vertical bar */
+    padding-bottom: 10px;
+}
+
+/* blue vertical bar on the left */
+.field-xpress-personal-loan-summary-panel .field-loan-amount::before {
+    content: "";
+    position: absolute;
+    left: 2px;
+    top: 2px;
+    bottom: 2px;
+    width: 2px;
+    border-radius: 2px;
+    background: linear-gradient(180deg, #2357ff 0%, #7aa3ff 100%);
+}
+
+/* label “Loan Amount” */
+.field-xpress-personal-loan-summary-panel .field-loan-amount > label.field-label {
+    display: block;
+    font-size: 11px;
+    font-weight: 500;
+    color: #9aa3c2;
+    margin: 0 0 2px 0;
+}
+
+/* value as bold amount (input styled like text) */
+.field-xpress-personal-loan-summary-panel .field-loan-amount input[type="text"] {
+    border: none;
+    background: transparent;
+    padding: 0;
+    margin: 0;
+    font-size: 18px;
+    font-weight: 700;
+    color: #171f3d;
+    outline: none;
+    box-shadow: none;
+}
+
+/* =========================================
+   Disbursement note under the card
+   ========================================= */
+
+.field-disbursement-note {
+    margin: 20px 0 0 0;            /* gap below the white card */
+    padding: 10px 18px 8px 18px;
+    border-radius: 12px;
+    background: #f2f5ff;
+    border: 1px solid #d8e2ff;
+}
+
+.field-disbursement-note p {
+    margin: 0;
+    font-size: 12px;
+    line-height: 1.4;
+    color: #4560c1;                /* bluish text, like reference */
+}
