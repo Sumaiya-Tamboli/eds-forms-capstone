@@ -2,7 +2,6 @@
    ROOT VARIABLES
    ======================================================= */
 :root {
-    --card-bg: #eef2fb;
     --card-border: #dce6f8;
     --header-bg: #e8eefa;
     --header-color: #1a2a6c;
@@ -12,15 +11,16 @@
     --value-color: #1c2b5e;
     --link-color: #2b5fff;
     --icon-color: #3a5bd9;
+    --chevron-color: #3a5bd9;
     --btn-bg: #adc0e8;
     --btn-hover: #2b5fff;
-    --chevron-color: #3a5bd9;
 }
 
 /* =======================================================
-   CARD WRAPPER — outer fieldset per accordion item
+   CARD WRAPPER — .field-loan-details / .field-personal-details
    ======================================================= */
-main .form fieldset.accordion > fieldset {
+main .form fieldset.accordion > fieldset.field-loan-details,
+main .form fieldset.accordion > fieldset.field-personal-details {
     background: #ffffff;
     border-radius: 16px !important;
     border: 1px solid var(--card-border) !important;
@@ -32,31 +32,31 @@ main .form fieldset.accordion > fieldset {
 }
 
 /* =======================================================
-   OUTER LEGEND (Item 1 / Item 2)
-   — this is the clickable toggle, styled as the header bar
-   — we hide the "Item 1" text and show inner panel name via
-     the inner legend which is always visible below
+   OUTER LEGEND — "Loan Details" / "Personal Details"
+   This IS the header bar. Style it directly.
    ======================================================= */
-main .form fieldset.accordion > fieldset > legend.accordion-legend {
-    display: block !important;
-    width: 100%;
-    box-sizing: border-box;
+main .form fieldset.accordion > fieldset.field-loan-details > legend.accordion-legend,
+main .form fieldset.accordion > fieldset.field-personal-details > legend.accordion-legend {
+    display: flex !important;
+    align-items: center;
+    gap: 10px;
+    width: 100% !important;
+    box-sizing: border-box !important;
     background: var(--header-bg) !important;
     padding: 15px 52px 15px 18px !important;
     margin: 0 !important;
+    font-size: 15px !important;
+    font-weight: 700 !important;
+    color: var(--header-color) !important;
+    border-bottom: 1px solid var(--divider-solid) !important;
     position: relative;
     cursor: pointer;
     user-select: none;
-    /* Hide "Item 1 / Item 2" text visually */
-    font-size: 0 !important;
-    color: transparent !important;
-    /* Fixed height so header bar is visible even with font-size 0 */
-    min-height: 54px;
-    border-bottom: 1px solid var(--divider-solid);
 }
 
-/* Chevron — up arrow when expanded */
-main .form fieldset.accordion > fieldset > legend.accordion-legend::after {
+/* Chevron — up (expanded state) */
+main .form fieldset.accordion > fieldset.field-loan-details > legend.accordion-legend::after,
+main .form fieldset.accordion > fieldset.field-personal-details > legend.accordion-legend::after {
     content: '' !important;
     display: block;
     width: 9px;
@@ -68,71 +68,21 @@ main .form fieldset.accordion > fieldset > legend.accordion-legend::after {
     right: 24px;
     top: 50%;
     translate: 0 -50%;
-    transition: transform 0.25s ease;
+    transition: transform 0.25s ease, translate 0.25s ease;
     margin-top: 0 !important;
 }
 
-/* Chevron — down arrow when collapsed */
-main .form fieldset.accordion > fieldset.accordion-collapse > legend.accordion-legend::after {
+/* Chevron — down (collapsed state) */
+main .form fieldset.accordion > fieldset.field-loan-details.accordion-collapse > legend.accordion-legend::after,
+main .form fieldset.accordion > fieldset.field-personal-details.accordion-collapse > legend.accordion-legend::after {
     transform: rotate(135deg) !important;
-    translate: 0 -20%;
+    translate: 0 -70%;
 }
 
 /* =======================================================
-   INNER PANEL FIELDSET (Loan Details / Personal Details)
-   — always block, never hidden (only outer fieldset collapses)
+   LOAN DETAILS ICON — bag/wallet
    ======================================================= */
-main .form fieldset.accordion .field-loan-details-panel,
-main .form fieldset.accordion .field-personal-details-panel {
-    border: none !important;
-    background: #ffffff;
-    padding: 0 !important;
-    margin: 0 !important;
-    display: flex !important;
-    flex-wrap: wrap;
-    row-gap: 0 !important;
-    position: relative;
-}
-
-/* Reset default accordion padding */
-main .form fieldset.accordion .field-loan-details-panel > :not(legend),
-main .form fieldset.accordion .field-personal-details-panel > :not(legend) {
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-}
-
-/* =======================================================
-   INNER LEGEND — overlaid on outer legend space
-   Shows "Loan Details" / "Personal Details" + icon
-   Positioned absolutely to sit inside the outer legend bar
-   ======================================================= */
-main .form fieldset.accordion .field-loan-details-panel > legend.field-label,
-main .form fieldset.accordion .field-personal-details-panel > legend.field-label {
-    display: flex !important;
-    align-items: center;
-    gap: 10px;
-    width: 100% !important;
-    box-sizing: border-box !important;
-    background: transparent !important;
-    padding: 0 52px 0 18px !important;
-    font-size: 15px !important;
-    font-weight: 700 !important;
-    color: var(--header-color) !important;
-    border-bottom: none !important;
-    margin: 0 !important;
-    /* Pull this legend up into the outer legend's space */
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 54px;
-    pointer-events: none; /* clicks pass through to outer legend */
-    z-index: 2;
-}
-
-/* =======================================================
-   LOAN DETAILS ICON (bag/wallet)
-   ======================================================= */
-main .form fieldset.accordion .field-loan-details-panel > legend.field-label::before {
+main .form fieldset.accordion > fieldset.field-loan-details > legend.accordion-legend::before {
     content: '';
     display: inline-flex;
     width: 20px;
@@ -148,9 +98,9 @@ main .form fieldset.accordion .field-loan-details-panel > legend.field-label::be
 }
 
 /* =======================================================
-   PERSONAL DETAILS ICON (person)
+   PERSONAL DETAILS ICON — person
    ======================================================= */
-main .form fieldset.accordion .field-personal-details-panel > legend.field-label::before {
+main .form fieldset.accordion > fieldset.field-personal-details > legend.accordion-legend::before {
     content: '';
     display: inline-flex;
     width: 20px;
@@ -163,6 +113,33 @@ main .form fieldset.accordion .field-personal-details-panel > legend.field-label
     mask-repeat: no-repeat;
     -webkit-mask-size: contain;
     mask-size: contain;
+}
+
+/* =======================================================
+   INNER PANEL FIELDSET
+   ======================================================= */
+main .form fieldset.accordion .field-loan-details-panel,
+main .form fieldset.accordion .field-personal-details-panel {
+    border: none !important;
+    background: #ffffff;
+    padding: 0 !important;
+    margin: 0 !important;
+    display: flex !important;
+    flex-wrap: wrap;
+    row-gap: 0 !important;
+}
+
+/* Hide inner panel legend ("Loan Details" / "Personal Details" duplicate text) */
+main .form fieldset.accordion .field-loan-details-panel > legend,
+main .form fieldset.accordion .field-personal-details-panel > legend {
+    display: none !important;
+}
+
+/* Reset default accordion padding on inner children */
+main .form fieldset.accordion .field-loan-details-panel > :not(legend),
+main .form fieldset.accordion .field-personal-details-panel > :not(legend) {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
 }
 
 /* =======================================================
@@ -221,7 +198,7 @@ main .form fieldset.accordion .field-wrapper input[type="date"] {
 }
 
 /* =======================================================
-   LOAN DETAILS — row 1 dividers
+   LOAN DETAILS — row 1 field dividers
    ======================================================= */
 main .form fieldset.accordion .field-loan-amount,
 main .form fieldset.accordion .field-emi-amount,
@@ -234,7 +211,7 @@ main .form fieldset.accordion .field-processing-fee {
     border-bottom: 1px dashed var(--divider-dashed) !important;
 }
 
-/* LOAN DETAILS — row 2 dividers */
+/* LOAN DETAILS — row 2 field dividers */
 main .form fieldset.accordion .field-rate-of-interest,
 main .form fieldset.accordion .field-employer-name,
 main .form fieldset.accordion .field-schedule-of-charges {
@@ -246,7 +223,7 @@ main .form fieldset.accordion .field-type-of-loan {
     border-bottom: none !important;
 }
 
-/* Schedule of Charges — blue link */
+/* Schedule of Charges — blue clickable link */
 main .form fieldset.accordion .field-schedule-of-charges input[type="text"] {
     color: var(--link-color) !important;
     font-weight: 600 !important;
@@ -292,8 +269,10 @@ main .form fieldset.accordion .field-confirm-button {
     padding: 16px 18px !important;
     background: #ffffff;
     border-top: 1px solid var(--divider-solid);
-    flex: 1 1 100%;
+    flex: 0 0 100%;
+    box-sizing: border-box;
 }
+
 main .form fieldset.accordion .field-confirm-button .button {
     min-width: 130px;
     padding: 10px 22px;
@@ -306,6 +285,7 @@ main .form fieldset.accordion .field-confirm-button .button {
     cursor: pointer;
     transition: background 0.2s ease;
 }
+
 main .form fieldset.accordion .field-confirm-button .button:hover {
     background: var(--btn-hover);
 }
