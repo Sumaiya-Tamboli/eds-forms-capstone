@@ -1430,54 +1430,58 @@ img[alt="Buy a new Health Insurance"] {
    LOAN APPLICATION DETAILS CARD
    =========================== */
 
-/* outer white rounded card */
 .field-loan-application-details-panel {
     border: 1px solid #e5ecff;
     border-radius: 24px;
     background: #ffffff;
-    padding: 24px 26px 20px 26px;
+    padding: 22px 26px 20px 26px;
     box-shadow: 0 10px 25px rgba(15, 35, 95, 0.06);
-    box-sizing: border-box;
     margin: 20px 0;
+    box-sizing: border-box;
 }
 
-/* hide legend text (we don’t need “Loan Application Details” as header) */
+/* hide outer legend ("Loan Application Details") */
 .field-loan-application-details-panel > legend.field-label {
     display: none;
 }
 
 /* ===========================
-   HEADER ROW: application icon + label + number
+   HEADER: ICON + LABEL + NUMBER
    =========================== */
 
 .field-loan-application-number {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    column-gap: 14px;
+    display: flex;
     align-items: center;
+    gap: 14px;
     margin-bottom: 10px;
 }
 
-/* circular purple icon */
+/* circular purple icon on the left */
 .field-loan-application-number::before {
     content: "";
     width: 44px;
     height: 44px;
     border-radius: 50%;
     background: radial-gradient(circle at 30% 20%, #fef7ff 0%, #e6ddff 40%, #c1a6ff 100%);
+    flex-shrink: 0;
 }
 
-/* label “Loan Application Number” */
-.field-loan-application-number > label.field-label {
+/* wrap label + value in a vertical column */
+.field-loan-application-number > label.field-label,
+.field-loan-application-number > input[type="text"] {
     display: block;
+}
+
+/* label above number */
+.field-loan-application-number > label.field-label {
     font-size: 12px;
     font-weight: 500;
     color: #9aa3c2;
-    margin-bottom: 2px;
+    margin: 0 0 2px 0;
 }
 
-/* value (input) as big bold number */
-.field-loan-application-number input[type="text"] {
+/* input styled as big number */
+.field-loan-application-number > input[type="text"] {
     border: none;
     background: transparent;
     padding: 0;
@@ -1485,8 +1489,8 @@ img[alt="Buy a new Health Insurance"] {
     font-size: 22px;
     font-weight: 700;
     color: #161c3d;
-    box-shadow: none;
     outline: none;
+    box-shadow: none;
 }
 
 /* ===========================
@@ -1494,7 +1498,7 @@ img[alt="Buy a new Health Insurance"] {
    =========================== */
 
 .field-contact-note {
-    margin: 4px 0 18px 58px; /* indented under label, like reference */
+    margin: 4px 0 18px 58px;  /* indented under header */
 }
 
 .field-contact-note p {
@@ -1522,15 +1526,14 @@ img[alt="Buy a new Health Insurance"] {
     margin-bottom: 12px;
 }
 
-/* Loan Amount row with blue vertical bar and dashed bottom */
+/* Loan Amount row */
 .field-xpress-personal-loan-summary-panel .field-loan-amount {
     position: relative;
     padding-left: 18px;
     padding-bottom: 10px;
-    margin-bottom: 6px;
 }
 
-/* blue vertical line */
+/* blue vertical bar */
 .field-xpress-personal-loan-summary-panel .field-loan-amount::before {
     content: "";
     position: absolute;
@@ -1542,7 +1545,7 @@ img[alt="Buy a new Health Insurance"] {
     background: linear-gradient(180deg, #2357ff 0%, #7aa3ff 100%);
 }
 
-/* label “Loan Amount” */
+/* small label */
 .field-xpress-personal-loan-summary-panel .field-loan-amount > label.field-label {
     font-size: 11px;
     font-weight: 500;
@@ -1550,7 +1553,7 @@ img[alt="Buy a new Health Insurance"] {
     margin-bottom: 2px;
 }
 
-/* value as bold amount */
+/* amount as bold text */
 .field-xpress-personal-loan-summary-panel .field-loan-amount input[type="text"] {
     border: none;
     background: transparent;
@@ -1559,6 +1562,6 @@ img[alt="Buy a new Health Insurance"] {
     font-size: 18px;
     font-weight: 700;
     color: #171f3d;
-    box-shadow: none;
     outline: none;
+    box-shadow: none;
 }
