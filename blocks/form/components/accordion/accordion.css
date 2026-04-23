@@ -65,47 +65,202 @@ main .form fieldset.accordion {
 /* ========= REVIEW CARD BACKGROUND & WRAPPER ========= */
 
 /* Whole accordion panel = rounded card with gradient */
-main .form fieldset.accordion > fieldset:not(.checkbox-group-wrapper, .radio-group-wrapper) {
+/* main .form fieldset.accordion > fieldset:not(.checkbox-group-wrapper, .radio-group-wrapper) {
     background: linear-gradient(180deg, #f5f8ff 0%, #ffffff 100%);
     border-radius: 12px;
     border: 1px solid #e1e7ff;
     margin: 16px 0;
     padding-bottom: 18px;
-    overflow: hidden; /* match rounded corners */
-}
+    overflow: hidden; */
+     /* match rounded corners */
+/* } */
 
 /* Top legend "Item 1 / Item 2" – make it look like plain text header */
-main .form fieldset.accordion legend.accordion-legend {
+/* main .form fieldset.accordion legend.accordion-legend {
     padding: 12px 24px;
     background: #f3f6fd;
     font-weight: 600;
     font-size: 14px;
     color: #1b2559;
-}
+} */
 
 /* Inner legend "Loan Details" / "Personal Details" */
-main .form fieldset.accordion fieldset > legend.field-label {
+/* main .form fieldset.accordion fieldset > legend.field-label {
     padding: 18px 24px 8px 24px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #1b2559;
+    border-bottom: 1px solid #e1e7ff;
+} */
+
+/* remove extra padding from field containers set by base rules */
+/* main .form fieldset.accordion fieldset > :not(legend) {
+    padding-left: 24px;
+    padding-right: 24px;
+} */
+
+/* ========= FIELD LAYOUT ========= */
+
+/* main .form .accordion .field-wrapper {
+    margin-top: 14px;
+    margin-bottom: 0;
+} */
+
+/* generic label style */
+/* main .form .accordion .field-wrapper > label.field-label {
+    display: block;
+    font-size: 11px;
+    font-weight: 500;
+    color: #8c93b2;
+    margin-bottom: 4px;
+} */
+
+/* value-as-text: hide borders/background of inputs */
+/* main .form .accordion .field-wrapper input[type="text"] {
+    border: none !important;
+    background: transparent;
+    padding: 0;
+    height: auto;
+    box-shadow: none;
+    outline: none;
+    font-size: 13px;
+    font-weight: 600;
+    color: #1b2559;
+} */
+
+/* placeholder style (e.g. dd/MM/YY) */
+/* main .form .accordion .field-wrapper input::placeholder {
+    color: #8c93b2;
+    font-weight: 500;
+} */
+
+/* first row in Loan Details: 4 equal columns with separators */
+/* main .form .accordion .field-loan-amount,
+main .form .accordion .field-emi-amount,
+main .form .accordion .field-tenure,
+main .form .accordion .field-processing-fee {
+    padding-right: 16px;
+    border-right: 1px solid #e5ebff;
+}
+main .form .accordion .field-processing-fee {
+    border-right: none;
+} */
+
+/* second row Loan Details */
+/* main .form .accordion .field-rate-of-interest,
+main .form .accordion .field-employer-name,
+main .form .accordion .field-schedule-of-charges,
+main .form .accordion .field-type-of-loan {
+    margin-top: 18px;
+    padding-right: 16px;
+    border-right: 1px solid #e5ebff;
+}
+main .form .accordion .field-type-of-loan {
+    border-right: none;
+} */
+
+/* "Click here" link style */
+/* main .form .accordion .field-schedule-of-charges input[type="text"] {
+    color: #296bff;
+    text-decoration: underline;
+    cursor: pointer;
+} */
+
+/* ========= PERSONAL DETAILS CARD ========= */
+
+/* first row: Full Name | Mobile | DOB | PAN with separators */
+/* main .form .accordion .field-full-name, */
+/* main .form .accordion .field-mobile-number,
+main .form .accordion .field-date-of-birth,
+main .form .accordion .field-pan-number {
+    padding-right: 16px;
+    border-right: 1px solid #e5ebff;
+}
+main .form .accordion .field-pan-number {
+    border-right: none;
+} */
+
+/* second row: long address */
+/* main .form .accordion .field-current-address {
+    margin-top: 22px;
+}
+main .form .accordion .field-current-address input[type="text"] {
+    width: 100%;
+    white-space: normal;
+    line-height: 1.4;
+} */
+
+/* third row: Residence Type */
+/* main .form .accordion .field-residence-type {
+    margin-top: 20px;
+} */
+
+/* ========= CONFIRM BUTTON ========= */
+
+/* main .form .accordion .field-confirm-button {
+    display: flex;
+    justify-content: center;
+    margin-top: 28px;
+    padding: 0;
+} */
+
+/* main .form .accordion .field-confirm-button .button {
+    min-width: 140px;
+    padding: 10px 24px;
+    border-radius: 8px;
+    border: none;
+    background: #296bff;
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 6px 14px rgba(41, 107, 255, 0.35);
+} */
+
+
+/* ========= CARD / PANEL LOOK ========= */
+
+/* whole accordion item (Item 1 / Item 2 block) */
+main .form fieldset.accordion > fieldset:not(.checkbox-group-wrapper, .radio-group-wrapper) {
+    background: #f5f8ff;
+    border-radius: 16px;
+    border: 1px solid #dfe7ff;
+    margin: 16px 0;
+    padding-bottom: 18px;
+    overflow: hidden;
+}
+
+/* “Item 1 / Item 2” header bar */
+main .form fieldset.accordion legend.accordion-legend {
+    padding: 14px 24px;
+    background: #f3f6fd;
+    font-size: 14px;
+    font-weight: 600;
+    color: #1b2559;
+}
+
+/* inner legend: “Loan Details”, “Personal Details” */
+main .form fieldset.accordion fieldset > legend.field-label {
+    padding: 16px 24px 6px 24px;
     font-size: 14px;
     font-weight: 600;
     color: #1b2559;
     border-bottom: 1px solid #e1e7ff;
 }
 
-/* remove extra padding from field containers set by base rules */
+/* content padding inside the card */
 main .form fieldset.accordion fieldset > :not(legend) {
     padding-left: 24px;
     padding-right: 24px;
 }
 
-/* ========= FIELD LAYOUT ========= */
+/* ========= GENERIC FIELD TEXT STYLE ========= */
 
 main .form .accordion .field-wrapper {
     margin-top: 14px;
     margin-bottom: 0;
 }
 
-/* generic label style */
 main .form .accordion .field-wrapper > label.field-label {
     display: block;
     font-size: 11px;
@@ -114,7 +269,7 @@ main .form .accordion .field-wrapper > label.field-label {
     margin-bottom: 4px;
 }
 
-/* value-as-text: hide borders/background of inputs */
+/* inputs look like simple text (no box) */
 main .form .accordion .field-wrapper input[type="text"] {
     border: none !important;
     background: transparent;
@@ -126,62 +281,78 @@ main .form .accordion .field-wrapper input[type="text"] {
     font-weight: 600;
     color: #1b2559;
 }
-
-/* placeholder style (e.g. dd/MM/YY) */
 main .form .accordion .field-wrapper input::placeholder {
     color: #8c93b2;
     font-weight: 500;
 }
 
-/* first row in Loan Details: 4 equal columns with separators */
+/* ========= LOAN DETAILS – 4×2 GRID WITH VERTICAL LINES ========= */
+
+/* first row */
 main .form .accordion .field-loan-amount,
 main .form .accordion .field-emi-amount,
 main .form .accordion .field-tenure,
 main .form .accordion .field-processing-fee {
     padding-right: 16px;
-    border-right: 1px solid #e5ebff;
+    border-right: 1px solid #dde4fb;
 }
 main .form .accordion .field-processing-fee {
-    border-right: none;
+    border-right: none;             /* last column: no line */
 }
 
-/* second row Loan Details */
+/* second row (Rate.., Employer.., Schedule.., Type..) */
 main .form .accordion .field-rate-of-interest,
 main .form .accordion .field-employer-name,
 main .form .accordion .field-schedule-of-charges,
 main .form .accordion .field-type-of-loan {
     margin-top: 18px;
     padding-right: 16px;
-    border-right: 1px solid #e5ebff;
+    border-right: 1px solid #dde4fb;
 }
 main .form .accordion .field-type-of-loan {
     border-right: none;
 }
 
-/* "Click here" link style */
+/* “Click here” look for Schedule of Charges */
 main .form .accordion .field-schedule-of-charges input[type="text"] {
     color: #296bff;
     text-decoration: underline;
     cursor: pointer;
 }
 
-/* ========= PERSONAL DETAILS CARD ========= */
+/* ========= PERSONAL DETAILS – TOP ROW WITH VERTICAL & BOTTOM DASHED LINE ========= */
 
-/* first row: Full Name | Mobile | DOB | PAN with separators */
+/* top row: Full Name | Mobile | DOB | PAN with vertical lines */
 main .form .accordion .field-full-name,
 main .form .accordion .field-mobile-number,
 main .form .accordion .field-date-of-birth,
 main .form .accordion .field-pan-number {
     padding-right: 16px;
-    border-right: 1px solid #e5ebff;
+    border-right: 1px solid #dde4fb;
 }
 main .form .accordion .field-pan-number {
     border-right: none;
 }
 
-/* second row: long address */
+/* dashed bottom line under first row */
+main .form .accordion .field-full-name,
+main .form .accordion .field-mobile-number,
+main .form .accordion .field-date-of-birth,
+main .form .accordion .field-pan-number {
+    position: relative;
+}
+main .form .accordion .field-pan-number::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -10px;
+    border-bottom: 1px dashed #dde4fb;
+}
+
+/* address row */
 main .form .accordion .field-current-address {
-    margin-top: 22px;
+    margin-top: 26px;
 }
 main .form .accordion .field-current-address input[type="text"] {
     width: 100%;
@@ -189,9 +360,9 @@ main .form .accordion .field-current-address input[type="text"] {
     line-height: 1.4;
 }
 
-/* third row: Residence Type */
+/* residence type row */
 main .form .accordion .field-residence-type {
-    margin-top: 20px;
+    margin-top: 18px;
 }
 
 /* ========= CONFIRM BUTTON ========= */
@@ -199,17 +370,16 @@ main .form .accordion .field-residence-type {
 main .form .accordion .field-confirm-button {
     display: flex;
     justify-content: center;
-    margin-top: 28px;
+    margin-top: 30px;
     padding: 0;
 }
-
 main .form .accordion .field-confirm-button .button {
     min-width: 140px;
     padding: 10px 24px;
     border-radius: 8px;
     border: none;
     background: #296bff;
-    color: #ffffff;
+    color: #fff;
     font-size: 13px;
     font-weight: 600;
     cursor: pointer;
