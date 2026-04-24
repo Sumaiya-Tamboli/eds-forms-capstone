@@ -1492,52 +1492,118 @@ img[alt="Buy a new Health Insurance"] {
 
 
 
-/* Outer white card that holds the whole left section */
-.main-left-card {
+/* ========= OUTER LEFT CARD (Loan Application Details) ========= */
+
+.field-loan-application-details-panel {
+  /* white card */
   background: #ffffff;
   border-radius: 24px;
   box-shadow: 0 12px 40px rgba(15, 35, 78, 0.08);
-  padding: 28px 32px 36px;
-  max-width: 720px;        /* adjust if your layout is wider/narrower */
+  border: 0;
   box-sizing: border-box;
+
+  /* approximate size/position like screenshot */
+  padding: 28px 32px 40px;
+  margin: 24px 0 20px;
+  max-width: 720px;  /* keep similar width as design */
 }
 
-/* The Xpress Personal Loan Summary panel itself */
+/* legend: “Loan Application Details” */
+.field-loan-application-details-panel > legend.field-label {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1b2559;
+  margin-bottom: 16px;
+}
+
+/* ========== Loan Application Number row ========== */
+
+.field-loan-application-details-panel .field-loan-application-number {
+  display: flex;
+  align-items: center;
+  column-gap: 18px;
+  margin-bottom: 18px;
+}
+
+/* label: “Loan Application Number” */
+.field-loan-application-details-panel
+  .field-loan-application-number > .field-label {
+  font-size: 13px;
+  color: #7b8ab8;
+}
+
+/* input that shows the number */
+.field-loan-application-details-panel
+  .field-loan-application-number input[type="text"] {
+  flex: 0 0 260px;           /* width close to screenshot */
+  height: 36px;
+  border-radius: 8px;
+  border: 1px solid #f24cc4; /* pink outline like your current UI */
+  padding: 4px 10px;
+  font-size: 18px;
+  font-weight: 600;
+  color: #111827;
+  outline: none;
+}
+
+/* ========== “We may call or email you, if needed.” ========== */
+
+.field-contact-note {
+  margin: 4px 0 28px;
+}
+
+.field-contact-note p {
+  margin: 0;
+  font-size: 13px;
+  color: #7b8ab8;
+}
+
+/* dashed divider line under contact note (like screenshot) */
+.field-contact-note::after {
+  content: "";
+  display: block;
+  margin-top: 26px;
+  border-bottom: 1px dashed #e2e5f3;
+}
+
+/* ========= XPRESS PERSONAL LOAN SUMMARY (inner fieldset) ========= */
+
 .field-xpress-personal-loan-summary-panel {
-  margin-top: 28px;        /* space from “We may call or email you” */
-  border: 0;               /* no default fieldset border */
+  border: 0;
+  margin: 26px 0 0;
   padding: 0;
 }
 
-/* Legend: “Xpress Personal Loan Summary” */
+/* legend: “Xpress Personal Loan Summary” */
 .field-xpress-personal-loan-summary-panel > legend.field-label {
   font-size: 16px;
   font-weight: 600;
   color: #1b2559;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
 }
 
-/* Container for the Loan Amount row */
+/* Loan Amount block */
 .field-xpress-personal-loan-summary-panel .field-loan-amount {
   position: relative;
+  padding-left: 18px;     /* space between blue bar and text */
   margin: 0;
-  padding-left: 18px;      /* space between blue bar and label */
 }
 
-/* Blue vertical bar at left */
+/* blue vertical bar on the left */
 .field-xpress-personal-loan-summary-panel .field-loan-amount::before {
   content: "";
   position: absolute;
   left: 0;
   top: 4px;
-  bottom: 0;
+  bottom: 2px;
   width: 3px;
   border-radius: 6px;
   background: #2f7cff;
 }
 
 /* “Loan Amount” label */
-.field-xpress-personal-loan-summary-panel .field-loan-amount > .field-label {
+.field-xpress-personal-loan-summary-panel
+  .field-loan-amount > .field-label {
   display: block;
   font-size: 11px;
   letter-spacing: 0.02em;
@@ -1545,19 +1611,15 @@ img[alt="Buy a new Health Insurance"] {
   margin-bottom: 4px;
 }
 
-/* Amount text (input styled as plain text) */
-.field-xpress-personal-loan-summary-panel .field-loan-amount input[type="text"] {
+/* amount text (input styled as plain text) */
+.field-xpress-personal-loan-summary-panel
+  .field-loan-amount input[type="text"] {
   border: none;
   padding: 0;
   margin: 0;
   font-size: 18px;
   font-weight: 600;
   color: #111827;
-  outline: none;
   background: transparent;
-}
-
-/* Optional: spacing below the panel before the blue information strip */
-.after-summary-info-strip {
-  margin-top: 20px;
+  outline: none;
 }
