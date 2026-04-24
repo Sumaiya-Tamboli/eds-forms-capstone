@@ -1567,51 +1567,124 @@ img[alt="Buy a new Health Insurance"] {
 }
 
 /* ========= XPRESS PERSONAL LOAN SUMMARY (inner fieldset) ========= */
-
-.field-xpress-personal-loan-summary-panel {
+/* ========= OUTER LEFT CARD (Loan Application Details) ========= */
+.field-loan-application-details-panel {
+  background: #ffffff;
+  border-radius: 24px;
+  box-shadow: 0 12px 40px rgba(15, 35, 78, 0.08);
   border: 0;
-  margin: 26px 0 0;
-  padding: 0;
+  box-sizing: border-box;
+  padding: 28px 32px 32px;
+  margin: 24px 0 20px;
+  max-width: 720px;
 }
 
-/* legend: “Xpress Personal Loan Summary” */
-.field-xpress-personal-loan-summary-panel > legend.field-label {
+/* legend: "Loan Application Details" */
+.field-loan-application-details-panel > legend.field-label {
   font-size: 16px;
   font-weight: 600;
   color: #1b2559;
+  margin-bottom: 16px;
+}
+
+/* ========== Loan Application Number row ========== */
+.field-loan-application-details-panel .field-loan-application-number {
+  display: flex;
+  align-items: center;
+  column-gap: 18px;
   margin-bottom: 12px;
 }
 
-/* Loan Amount block */
-.field-xpress-personal-loan-summary-panel .field-loan-amount {
-  position: relative;
-  padding-left: 18px;     /* space between blue bar and text */
+.field-loan-application-details-panel
+  .field-loan-application-number > .field-label {
+  font-size: 12px;
+  color: #7b8ab8;
+  white-space: nowrap;
+}
+
+.field-loan-application-details-panel
+  .field-loan-application-number input[type="text"] {
+  border: none;
+  padding: 0;
+  font-size: 20px;
+  font-weight: 700;
+  color: #1b2559;
+  background: transparent;
+  outline: none;
+}
+
+/* ========== "We may call or email you" note ========== */
+.field-contact-note {
+  margin: 4px 0 12px;   /* tight gap above and below */
+}
+
+.field-contact-note p {
+  font-size: 13px;
+  color: #7b8ab8;
   margin: 0;
 }
 
-/* blue vertical bar on the left */
+/* dashed separator line */
+.field-contact-note::after {
+  content: "";
+  display: block;
+  margin-top: 12px;
+  border-top: 1.5px dashed #d9dff0;
+}
+
+/* ========== Xpress Personal Loan Summary panel ========== */
+.field-xpress-personal-loan-summary-panel {
+  border: 0;
+  margin: 16px 0 0;   /* reduced — pulls block up closer to dashed line */
+  padding: 0;
+}
+
+/* legend: "Xpress Personal Loan Summary" */
+.field-xpress-personal-loan-summary-panel > legend.field-label {
+  font-size: 16px;
+  font-weight: 700;
+  color: #1b2559;
+  margin-bottom: 10px;
+  padding: 0;
+}
+
+/* Loan Amount block — KEY FIX: explicit height so bar doesn't stretch */
+.field-xpress-personal-loan-summary-panel .field-loan-amount {
+  position: relative;
+  padding-left: 14px;
+  margin: 0;
+  /* constrain height so the blue bar stays short */
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: unset;
+}
+
+/* blue vertical bar — FIXED height, not stretching full block */
 .field-xpress-personal-loan-summary-panel .field-loan-amount::before {
   content: "";
   position: absolute;
   left: 0;
-  top: 4px;
-  bottom: 2px;
+  top: 2px;
+  /* fixed pixel height instead of bottom: X — this is the key fix */
+  height: 36px;
   width: 3px;
   border-radius: 6px;
   background: #2f7cff;
 }
 
-/* “Loan Amount” label */
+/* "Loan Amount" label */
 .field-xpress-personal-loan-summary-panel
   .field-loan-amount > .field-label {
   display: block;
   font-size: 11px;
   letter-spacing: 0.02em;
   color: #7b8ab8;
-  margin-bottom: 4px;
+  margin-bottom: 2px;
+  line-height: 1.3;
 }
 
-/* amount text (input styled as plain text) */
+/* amount value */
 .field-xpress-personal-loan-summary-panel
   .field-loan-amount input[type="text"] {
   border: none;
@@ -1622,45 +1695,5 @@ img[alt="Buy a new Health Insurance"] {
   color: #111827;
   background: transparent;
   outline: none;
-}
-
-
-
-/* 1. tighten vertical spacing above the Xpress block */
-.field-contact-note {
-  margin: 4px 0 16px;   /* was 28px bottom – this pulls Xpress block up */
-}
-
-.field-contact-note::after {
-  margin-top: 16px;     /* thinner gap to the dashed line */
-}
-
-/* 2. make the Xpress block more compact */
-.field-xpress-personal-loan-summary-panel {
-  margin: 18px 0 0;     /* was 26px – less gap above the heading */
-}
-
-/* reduce left padding & height of the blue line area */
-.field-xpress-personal-loan-summary-panel .field-loan-amount {
-  padding-left: 14px;   /* slightly closer to the left */
-  margin-top: 4px;
-  margin-bottom: 4px;   /* shrink total block height */
-}
-
-/* shorter blue vertical bar */
-.field-xpress-personal-loan-summary-panel .field-loan-amount::before {
-  top: 6px;
-  bottom: 10px;         /* was 2px – this makes the bar shorter */
-}
-
-/* little tighter text in that block */
-.field-xpress-personal-loan-summary-panel
-  .field-loan-amount > .field-label {
-  margin-bottom: 2px;
-}
-
-.field-xpress-personal-loan-summary-panel
-  .field-loan-amount input[type="text"] {
-  font-size: 16px;      /* slightly smaller amount text */
-  line-height: 1.1;
+  line-height: 1.3;
 }
