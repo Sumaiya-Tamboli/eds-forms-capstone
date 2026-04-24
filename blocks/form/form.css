@@ -1625,3 +1625,151 @@ img[alt="Buy a new Health Insurance"] {
 }
 
 
+
+
+
+/* ===== Loan Application Number row ===== */
+.field-loan-application-details-panel .field-loan-application-number {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 14px;
+  margin: 20px 0 10px 0;
+  border-bottom: none !important;
+}
+
+/* Purple circle icon */
+.field-loan-application-details-panel .field-loan-application-number::before {
+  content: "";
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 20%, #fef7ff 0%, #e6ddff 40%, #c1a6ff 100%);
+}
+
+/* Label + input stack vertically as a group */
+.field-loan-application-details-panel .field-loan-application-number {
+  flex-wrap: nowrap;
+}
+
+/* Hide the default label placement (it sits outside flex naturally) */
+.field-loan-application-details-panel .field-loan-application-number > label.field-label {
+  display: block;
+  font-size: 12px;
+  font-weight: 500;
+  color: #9aa3c2;
+  margin: 0 0 2px 0;
+  order: 1;
+}
+
+/* Stack label on top of input */
+.field-loan-application-details-panel .field-loan-application-number > input[type="text"] {
+  display: block;
+  border: none !important;
+  background: transparent !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  height: auto !important;
+  font-size: 22px !important;
+  font-weight: 700 !important;
+  color: #161c3d;
+  outline: none;
+  box-shadow: none;
+  width: auto;
+  order: 2;
+}
+
+/* Wrap label+input in a column — use a CSS trick since HTML structure is fixed */
+.field-loan-application-details-panel .field-loan-application-number {
+  align-items: flex-start;
+}
+
+/* The ::before circle should align to center */
+.field-loan-application-details-panel .field-loan-application-number::before {
+  align-self: center;
+}
+
+/* ===== "We may call or email you" note ===== */
+.field-loan-application-details-panel .field-contact-note {
+  margin: 4px 0 20px 58px;
+}
+
+.field-loan-application-details-panel .field-contact-note p {
+  font-size: 13px;
+  color: #8e98b8;
+  margin: 0;
+}
+
+/* Dashed divider after the note */
+.field-loan-application-details-panel .field-contact-note::after {
+  content: "";
+  display: block;
+  margin-top: 20px;
+  border-bottom: 1px dashed #e2e5f3;
+}
+
+/* ===== Xpress Personal Loan Summary panel ===== */
+.field-xpress-personal-loan-summary-panel {
+  margin-top: 20px;
+}
+
+.field-xpress-personal-loan-summary-panel > legend.field-label {
+  display: block !important;
+  font-size: 16px !important;
+  font-weight: 700 !important;
+  color: #1b2559 !important;
+  margin-bottom: 14px;
+}
+
+/* ===== Loan Amount block ===== */
+.field-xpress-personal-loan-summary-panel .field-loan-amount {
+  position: relative;
+  padding-left: 18px;
+  border-bottom: none !important;
+}
+
+/* Blue vertical bar */
+.field-xpress-personal-loan-summary-panel .field-loan-amount::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 2px;
+  bottom: 2px;
+  width: 3px;
+  border-radius: 3px;
+  background: #2f7cff;
+}
+
+/* "Loan Amount" label */
+.field-xpress-personal-loan-summary-panel .field-loan-amount > label.field-label {
+  display: block;
+  font-size: 11px;
+  color: #7b8ab8;
+  font-weight: 500;
+  margin: 0 0 4px 0;
+}
+
+/* Amount value input */
+.field-xpress-personal-loan-summary-panel .field-loan-amount input[type="text"] {
+  border: none !important;
+  background: transparent !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  height: auto !important;
+  font-size: 18px !important;
+  font-weight: 700 !important;
+  color: #111827;
+  outline: none;
+  box-shadow: none;
+}
+
+/* ===== Outer card ===== */
+.field-loan-application-details-panel {
+  background: #ffffff;
+  border-radius: 24px;
+  box-shadow: 0 8px 32px rgba(15, 35, 78, 0.08);
+  border: 1px solid #e8edf8;
+  padding: 24px 28px 28px;
+  margin: 0;
+}
