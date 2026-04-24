@@ -1,121 +1,163 @@
 (function () {
 
-  /* ── helpers ── */
+  /* === Formatters === */
   function formatINR(val) {
-    // e.g. 1500000 → ₹15,00,000
-    return '₹' + Number(val).toLocaleString('en-IN');
+    return '\u20B9' + Number(val).toLocaleString('en-IN');
   }
 
-  function formatLabel(val) {
-    // e.g. 50000 → 50K | 200000 → 2L | 1500000 → 15L
+  function formatLabel_amount(val) {
+    val = Number(val);
     if (val >= 100000) return (val / 100000) + 'L';
-    if (val >= 1000)   return (val / 1000)  + 'K';
-    return val;
+    if (val >= 1000)   return (val / 1000) + 'K';
+    return String(val);
   }
 
-  function formatMonths(val) {
-    return val + ' mo';
+  function formatLabel_tenure(val) {
+    return val + 'm';
   }
 
-  /* ── orange fill on webkit (CSS can't do it natively) ── */
-  function updateTrackFill(input) {
-    const min  = Number(input.min)   || 0;
-    const max  = Number(input.max)   || 100;
-    const val  = Number(input.value) || 0;
-    const pct  = ((val - min) / (max - min)) * 100;
+  /* === Orange fill — sets inline gradient on the input === */
+  function updateFill(input) {
+    var min = Number(input.min) || 0;
+    var max = Number(input.max) || 100;
+    var val = Number(input.value) || 0;
+    var pct = ((val - min) / (max - min)) * 100;
     input.style.background =
-      `linear-gradient(to right,
-        #f59e0b 0%, #f59e0b ${pct}%,
-        #e5e7eb ${pct}%, #e5e7eb 100%)`;
+      'linear-gradient(to right,' +
+      '#f59e0b 0%,' +
+      '#f59e0b ' + pct + '%,' +
+      '#e5e7eb ' + pct + '%,' +
+      '#e5e7eb 100%)';
   }
 
-  /* ── build tick labels below a slider ── */
-  function buildLabels(wrapper, ticks, formatter) {
-    const existing = wrapper.querySelector('.loan-slider-labels');
-    if (existing) existing.remove();
+  /* === Build label+value box row above slider === */
+  function buildLabelRow(fieldEl, input, valueFormatter) {
+    /* reuse if already built */
+    if (fieldEl.querySelector('.label-row')) return;
 
-    const row = document.createElement('div');
-    row.className = 'loan-slider-labels';
-    ticks.forEach(t => {
-      const s = document.createElement('span');
-      s.textContent = formatter(t);
-      row.appendChild(s);
-    });
-    wrapper.appendChild(row);
-  }
+    var originalLabel = fieldEl.querySelector('label.field-label');
+    if (!originalLabel) return;
 
-  /* ── build the value display box beside the label ── */
-  function buildValueBox(fieldWrapper, input, formatter) {
-    let box = fieldWrapper.querySelector('.loan-value-display');
-    if (!box) {
-      box = document.createElement('div');
-      box.className = 'loan-value-display';
-      // insert after the <label>
-      const label = fieldWrapper.querySelector('label');
-      if (label) label.after(box);
+    /* create wrapper row */
+    var row = document.createElement('div');
+    row.className = 'label-row';
+
+    /* move original label into row */
+    var labelClone = originalLabel.cloneNode(true);
+    originalLabel.style.display = 'none';
+    row.appendChild(labelClone);
+
+    /* value display box */
+    var box = document.createElement('div');
+    box.className = 'loan-value-display';
+    box.textContent = valueFormatter(input.value);
+    row.appendChild(box);
+
+    /* insert row before the range-widget-wrapper */
+    var rangeWrapper = fieldEl.querySelector('.range-widget-wrapper');
+    if (rangeWrapper) {
+      fieldEl.insertBefore(row, rangeWrapper);
+    } else {
+      fieldEl.insertBefore(row, fieldEl.firstChild);
     }
-    box.textContent = formatter(input.value);
+
     return box;
   }
 
-  /* ── wire up one slider ── */
-  function initSlider(fieldSelector, ticks, labelFormatter, valueFormatter) {
-    const field = document.querySelector(fieldSelector);
-    if (!field) return;
+  /* === Build tick marks below slider === */
+  function buildTicks(fieldEl, ticks, formatter) {
+    if (fieldEl.querySelector('.loan-ticks-row')) return;
 
-    const input = field.querySelector('input[type="range"]');
+    var rangeWrapper = fieldEl.querySelector('.range-widget-wrapper');
+    if (!rangeWrapper) return;
+
+    var row = document.createElement('div');
+    row.className = 'loan-ticks-row';
+
+    ticks.forEach(function (t) {
+      var span = document.createElement('span');
+      var em = document.createElement('em');
+      em.textContent = formatter(t);
+      span.appendChild(em);
+      row.appendChild(span);
+    });
+
+    rangeWrapper.appendChild(row);
+  }
+
+  /* === Wire up one slider field === */
+  function initSlider(fieldEl, config) {
+    var input = fieldEl.querySelector('input[type="range"]');
     if (!input) return;
+    if (fieldEl.dataset.sliderInited) return;
+    fieldEl.dataset.sliderInited = 'true';
 
-    const rangeWrapper = field.querySelector('.range-widget-wrapper');
+    /* set max value by default to match Image 2 */
+    if (config.defaultMax) {
+      input.value = input.max;
+    }
 
-    // build UI
-    const valueBox = buildValueBox(field, input, valueFormatter);
-    if (rangeWrapper) buildLabels(rangeWrapper, ticks, labelFormatter);
+    /* build UI */
+    var valueBox = buildLabelRow(fieldEl, input, config.valueFormatter);
+    buildTicks(fieldEl, config.ticks, config.tickFormatter);
 
-    // initial state
-    updateTrackFill(input);
+    /* initial fill */
+    updateFill(input);
 
-    // live update
-    input.addEventListener('input', () => {
-      updateTrackFill(input);
-      valueBox.textContent = valueFormatter(input.value);
+    /* live update */
+    input.addEventListener('input', function () {
+      updateFill(input);
+      if (valueBox) valueBox.textContent = config.valueFormatter(input.value);
     });
   }
 
-  /* ── wait for AEM form to finish rendering ── */
-  function tryInit() {
-    const amountInput = document.querySelector(
-      '.field-loan-amount-inr input[type="range"]'
-    );
-    if (!amountInput) {
-      // retry until the form mounts
-      setTimeout(tryInit, 300);
-      return;
+  /* === Configs for each slider === */
+  var sliderConfigs = {
+    '.field-loan-amount-inr': {
+      ticks: [50000, 200000, 400000, 600000, 800000, 1000000, 1500000],
+      tickFormatter: formatLabel_amount,
+      valueFormatter: formatINR,
+      defaultMax: true
+    },
+    '.field-loan-tenure-months': {
+      ticks: [12, 24, 36, 48, 60, 72, 84],
+      tickFormatter: formatLabel_tenure,
+      valueFormatter: function (v) { return v + ' months'; },
+      defaultMax: true
     }
+  };
 
-    /* Loan Amount slider
-       ticks: 50K, 2L, 4L, 6L, 8L, 10L, 15L  */
-    initSlider(
-      '.field-loan-amount-inr',
-      [50000, 200000, 400000, 600000, 800000, 1000000, 1500000],
-      formatLabel,   // tick labels  → "50K", "2L" …
-      formatINR      // value box    → "₹15,00,000"
-    );
-
-    /* Tenure slider — adjust ticks to your min/max */
-    initSlider(
-      '.field-loan-tenure-months',
-      [6, 12, 24, 36, 48, 60],
-      formatMonths,
-      v => v + ' months'
-    );
+  /* === Init all sliders found right now === */
+  function initAll() {
+    Object.keys(sliderConfigs).forEach(function (selector) {
+      var el = document.querySelector(selector);
+      if (el) initSlider(el, sliderConfigs[selector]);
+    });
   }
 
-  /* kick off after DOM ready */
+  /* === MutationObserver — watches DOM for slider appearance === */
+  function watchAndInit() {
+    initAll(); /* try immediately */
+
+    var observer = new MutationObserver(function () {
+      initAll();
+    });
+
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true,
+      attributes: false
+    });
+
+    /* stop watching after 15s (form should be loaded by then) */
+    setTimeout(function () { observer.disconnect(); }, 15000);
+  }
+
+  /* === Boot === */
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', tryInit);
+    document.addEventListener('DOMContentLoaded', watchAndInit);
   } else {
-    tryInit();
+    watchAndInit();
   }
 
 })();
