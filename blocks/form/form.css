@@ -1623,3 +1623,44 @@ img[alt="Buy a new Health Insurance"] {
   background: transparent;
   outline: none;
 }
+
+
+
+/* 1. tighten vertical spacing above the Xpress block */
+.field-contact-note {
+  margin: 4px 0 16px;   /* was 28px bottom – this pulls Xpress block up */
+}
+
+.field-contact-note::after {
+  margin-top: 16px;     /* thinner gap to the dashed line */
+}
+
+/* 2. make the Xpress block more compact */
+.field-xpress-personal-loan-summary-panel {
+  margin: 18px 0 0;     /* was 26px – less gap above the heading */
+}
+
+/* reduce left padding & height of the blue line area */
+.field-xpress-personal-loan-summary-panel .field-loan-amount {
+  padding-left: 14px;   /* slightly closer to the left */
+  margin-top: 4px;
+  margin-bottom: 4px;   /* shrink total block height */
+}
+
+/* shorter blue vertical bar */
+.field-xpress-personal-loan-summary-panel .field-loan-amount::before {
+  top: 6px;
+  bottom: 10px;         /* was 2px – this makes the bar shorter */
+}
+
+/* little tighter text in that block */
+.field-xpress-personal-loan-summary-panel
+  .field-loan-amount > .field-label {
+  margin-bottom: 2px;
+}
+
+.field-xpress-personal-loan-summary-panel
+  .field-loan-amount input[type="text"] {
+  font-size: 16px;      /* slightly smaller amount text */
+  line-height: 1.1;
+}
