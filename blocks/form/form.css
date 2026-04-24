@@ -1567,31 +1567,30 @@ img[alt="Buy a new Health Insurance"] {
 }
 
 /* ========= XPRESS PERSONAL LOAN SUMMARY (inner fieldset) ========= */
-/* 
+
 .field-xpress-personal-loan-summary-panel {
   border: 0;
   margin: 26px 0 0;
   padding: 0;
-} */
+}
 
 /* legend: “Xpress Personal Loan Summary” */
-/* .field-xpress-personal-loan-summary-panel > legend.field-label {
+.field-xpress-personal-loan-summary-panel > legend.field-label {
   font-size: 16px;
   font-weight: 600;
   color: #1b2559;
   margin-bottom: 12px;
-} */
+}
 
 /* Loan Amount block */
-/* .field-xpress-personal-loan-summary-panel .field-loan-amount {
+.field-xpress-personal-loan-summary-panel .field-loan-amount {
   position: relative;
-  padding-left: 18px;    */
-    /* space between blue bar and text */
-  /* margin: 0;
-} */
+  padding-left: 18px;     /* space between blue bar and text */
+  margin: 0;
+}
 
 /* blue vertical bar on the left */
-/* .field-xpress-personal-loan-summary-panel .field-loan-amount::before {
+.field-xpress-personal-loan-summary-panel .field-loan-amount::before {
   content: "";
   position: absolute;
   left: 0;
@@ -1600,20 +1599,20 @@ img[alt="Buy a new Health Insurance"] {
   width: 3px;
   border-radius: 6px;
   background: #2f7cff;
-} */
+}
 
 /* “Loan Amount” label */
-/* .field-xpress-personal-loan-summary-panel
+.field-xpress-personal-loan-summary-panel
   .field-loan-amount > .field-label {
   display: block;
   font-size: 11px;
   letter-spacing: 0.02em;
   color: #7b8ab8;
   margin-bottom: 4px;
-} */
+}
 
 /* amount text (input styled as plain text) */
-/* .field-xpress-personal-loan-summary-panel
+.field-xpress-personal-loan-summary-panel
   .field-loan-amount input[type="text"] {
   border: none;
   padding: 0;
@@ -1623,116 +1622,6 @@ img[alt="Buy a new Health Insurance"] {
   color: #111827;
   background: transparent;
   outline: none;
-} */
-
-
-
-
-
-/* ── Outer panel ── */
-.field-loan-application-details-panel {
-  background: #ffffff;
-  border-radius: 16px;
-  padding: 24px 28px;
-  border: 1px solid #f0eef8;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 
-.field-loan-application-details-panel > legend {
-  display: block;
-  font-size: 18px;
-  font-weight: 700;
-  color: #1a1a2e;
-  margin-bottom: 20px;
-}
 
-/* ── Loan Application Number field ── */
-.field-loan-application-number {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  margin-bottom: 6px;
-}
-
-/* Avatar/icon circle before the label */
-.field-loan-application-number::before {
-  content: '';
-  width: 44px;
-  height: 44px;
-  min-width: 44px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #c7b8f5 0%, #a598e8 100%);
-  display: block;
-}
-
-.field-loan-application-number .field-label {
-  font-size: 12px;
-  color: #8b8fa8;
-  font-weight: 400;
-  display: block;
-  margin-bottom: 3px;
-}
-
-.field-loan-application-number input[type="text"] {
-  font-size: 20px;
-  font-weight: 700;
-  color: #1a1a2e;
-  border: none;
-  outline: none;
-  padding: 0;
-  background: transparent;
-  letter-spacing: 0.3px;
-  width: auto;
-}
-
-/* ── Contact note ── */
-.field-contact-note {
-  font-size: 13px;
-  color: #9ca3b8;
-  margin: 14px 0 18px 0;
-  padding-bottom: 18px;
-  border-bottom: 1px dashed #e8e4f5;
-}
-
-/* ── Inner summary panel ── */
-.field-xpress-personal-loan-summary-panel {
-  border: none;
-  padding: 0;
-  margin-top: 2px;
-}
-
-.field-xpress-personal-loan-summary-panel > legend {
-  display: block;
-  font-size: 15px;
-  font-weight: 700;
-  color: #1a1a2e;
-  margin-bottom: 16px;
-}
-
-/* ── Loan Amount field with left blue bar ── */
-.field-loan-amount {
-  position: relative;
-  padding-left: 14px;
-  border-left: 3px solid #6c63e8;
-  border-radius: 0;
-}
-
-.field-loan-amount .field-label {
-  display: block;
-  font-size: 11px;
-  color: #9ca3b8;
-  font-weight: 400;
-  margin-bottom: 4px;
-  letter-spacing: 0.2px;
-}
-
-.field-loan-amount input[type="text"] {
-  font-size: 16px;
-  font-weight: 700;
-  color: #1a1a2e;
-  border: none;
-  outline: none;
-  padding: 0;
-  background: transparent;
-  width: 100%;
-}
