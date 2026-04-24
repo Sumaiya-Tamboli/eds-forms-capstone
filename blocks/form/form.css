@@ -1567,192 +1567,53 @@ img[alt="Buy a new Health Insurance"] {
 }
 
 /* ========= XPRESS PERSONAL LOAN SUMMARY (inner fieldset) ========= */
-/* ========= OUTER LEFT CARD (Loan Application Details) ========= */
-.field-loan-application-details-panel {
-  background: #ffffff;
-  border-radius: 24px;
-  box-shadow: 0 12px 40px rgba(15, 35, 78, 0.08);
+
+.field-xpress-personal-loan-summary-panel {
   border: 0;
-  box-sizing: border-box;
-  padding: 28px 32px 32px;
-  margin: 24px 0 20px;
-  max-width: 720px;
+  margin: 26px 0 0;
+  padding: 0;
 }
 
-/* legend: "Loan Application Details" */
-.field-loan-application-details-panel > legend.field-label {
+/* legend: “Xpress Personal Loan Summary” */
+.field-xpress-personal-loan-summary-panel > legend.field-label {
   font-size: 16px;
   font-weight: 600;
   color: #1b2559;
-  margin-bottom: 16px;
-}
-
-/* ========== Loan Application Number row ========== */
-.field-loan-application-details-panel .field-loan-application-number {
-  display: flex;
-  align-items: center;
-  column-gap: 18px;
   margin-bottom: 12px;
 }
 
-.field-loan-application-details-panel
-  .field-loan-application-number > .field-label {
-  font-size: 12px;
-  color: #7b8ab8;
-  white-space: nowrap;
-}
-
-.field-loan-application-details-panel
-  .field-loan-application-number input[type="text"] {
-  border: none;
-  padding: 0;
-  font-size: 20px;
-  font-weight: 700;
-  color: #1b2559;
-  background: transparent;
-  outline: none;
-}
-
-/* ========== "We may call or email you" note ========== */
-.field-contact-note {
-  margin: 4px 0 12px;   /* tight gap above and below */
-}
-
-.field-contact-note p {
-  font-size: 13px;
-  color: #7b8ab8;
-  margin: 0;
-}
-
-/* dashed separator line */
-.field-contact-note::after {
-  content: "";
-  display: block;
-  margin-top: 12px;
-  border-top: 1.5px dashed #d9dff0;
-}
-
-/* ========= OUTER CARD ========= */
-.field-loan-application-details-panel {
-  background: #ffffff;
-  border-radius: 24px;
-  box-shadow: 0 12px 40px rgba(15, 35, 78, 0.08);
-  border: 0;
-  box-sizing: border-box;
-  padding: 28px 32px 32px;
-  margin: 24px 0 20px;
-  max-width: 720px;
-}
-
-.field-loan-application-details-panel > legend.field-label {
-  display: none; /* hidden in screenshot */
-}
-
-/* ========= LOAN APPLICATION NUMBER ROW ========= */
-.field-loan-application-number {
-  display: flex;
-  flex-direction: column;  /* label on top, value below */
-  margin-bottom: 16px;
-}
-
-.field-loan-application-number > .field-label {
-  font-size: 12px;
-  color: #7b8ab8;
-  margin-bottom: 4px;
-}
-
-.field-loan-application-number input[type="text"] {
-  border: none;
-  padding: 0;
-  font-size: 20px;
-  font-weight: 700;
-  color: #1b2559;
-  background: transparent;
-  outline: none;
-  width: 100%;
-}
-
-/* ========= CONTACT NOTE ========= */
-.field-contact-note {
-  margin: 0 0 0 0;
-  padding: 0;
-}
-
-.field-contact-note p {
-  font-size: 13px;
-  color: #7b8ab8;
-  margin: 0 0 12px 0;
-}
-
-/* Dashed line right after the note text */
-.field-contact-note::after {
-  content: "";
-  display: block;
-  border-top: 1.5px dashed #d9dff0;
-  margin-bottom: 0;
-}
-
-/* ========= XPRESS PANEL ========= */
-.field-xpress-personal-loan-summary-panel {
-  border: 0;
-  padding: 0;
-  margin: 20px 0 0;   /* just 20px below the dashed line */
-}
-
-.field-xpress-personal-loan-summary-panel > legend.field-label {
-  font-size: 15px;
-  font-weight: 700;
-  color: #1b2559;
-  margin-bottom: 14px;
-  padding: 0;
-  float: none;
-  width: 100%;
-}
-
-/* ========= LOAN AMOUNT BLOCK — KEY FIX ========= */
+/* Loan Amount block */
 .field-xpress-personal-loan-summary-panel .field-loan-amount {
-  display: flex;          /* horizontal: bar | content */
-  flex-direction: row;
-  align-items: stretch;
-  gap: 12px;
+  position: relative;
+  padding-left: 18px;     /* space between blue bar and text */
   margin: 0;
-  padding: 0;
 }
 
-/* Blue bar as a separate element via flex, NOT ::before on a relative container */
+/* blue vertical bar on the left */
 .field-xpress-personal-loan-summary-panel .field-loan-amount::before {
   content: "";
-  display: block;
+  position: absolute;
+  left: 0;
+  top: 4px;
+  bottom: 2px;
   width: 3px;
-  min-height: 38px;       /* fixed height = label + value */
   border-radius: 6px;
   background: #2f7cff;
-  flex-shrink: 0;
-  align-self: flex-start;
-  margin-top: 2px;
 }
 
-/* Text content to the right of the bar */
-.field-xpress-personal-loan-summary-panel .field-loan-amount > .field-label {
+/* “Loan Amount” label */
+.field-xpress-personal-loan-summary-panel
+  .field-loan-amount > .field-label {
   display: block;
   font-size: 11px;
   letter-spacing: 0.02em;
   color: #7b8ab8;
-  margin-bottom: 3px;
+  margin-bottom: 4px;
 }
 
-/* Wrap label + input in a column */
-.field-xpress-personal-loan-summary-panel .field-loan-amount {
-  align-items: flex-start;
-}
-
-/* The text column sits next to the bar */
-.field-xpress-personal-loan-summary-panel .field-loan-amount > .field-label,
-.field-xpress-personal-loan-summary-panel .field-loan-amount input[type="text"] {
-  display: block;
-}
-
-.field-xpress-personal-loan-summary-panel .field-loan-amount input[type="text"] {
+/* amount text (input styled as plain text) */
+.field-xpress-personal-loan-summary-panel
+  .field-loan-amount input[type="text"] {
   border: none;
   padding: 0;
   margin: 0;
@@ -1761,6 +1622,5 @@ img[alt="Buy a new Health Insurance"] {
   color: #111827;
   background: transparent;
   outline: none;
-  line-height: 1.3;
-  width: 100%;
 }
+
