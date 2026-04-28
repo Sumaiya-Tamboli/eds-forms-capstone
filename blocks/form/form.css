@@ -1364,7 +1364,7 @@ img[alt="Open a new Recurring Deposit"] {
     display: block;
     width: 100%;
     max-width: 260px;          /* adjust for your layout */
-    height: 250px;
+    height: 150px;
     border-radius: 24px;       /* rounded corners like design */
     border: none;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
@@ -1403,7 +1403,7 @@ img[alt="Buy a new Health Insurance"] {
     display: block;
     width: 100%;
     max-width: 260px;                 /* adjust if your column is narrower */
-    height: 250px;
+    height: 150px;
     border-radius: 24px;              /* same rounding as design */
     border: none;
     background-color: #ffe7f2;        /* light pink background, like mock */
