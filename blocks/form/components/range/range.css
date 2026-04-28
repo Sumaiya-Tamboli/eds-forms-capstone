@@ -53,16 +53,15 @@ main .form .range-widget-wrapper.decorated input[type="range"]:focus {
 
 
 
-
-/* ===== RANGE SLIDER FULL UI ===== */
+/* ===== RANGE UI FINAL ===== */
 
 .range-widget-wrapper.decorated {
   position: relative;
   width: 100%;
-  margin-top: 15px;
+  margin: 20px 0;
 }
 
-/* Track */
+/* TRACK */
 .range-widget-wrapper.decorated input[type="range"] {
   appearance: none;
   width: 100%;
@@ -74,57 +73,46 @@ main .form .range-widget-wrapper.decorated input[type="range"]:focus {
     to right,
     #f58220 0%,
     #f58220 calc(100% * var(--current-steps) / var(--total-steps)),
-    #e0e0e0 calc(100% * var(--current-steps) / var(--total-steps)),
-    #e0e0e0 100%
+    #d9d9d9 calc(100% * var(--current-steps) / var(--total-steps)),
+    #d9d9d9 100%
   );
 }
 
-/* Thumb */
+/* THUMB */
 .range-widget-wrapper.decorated input[type="range"]::-webkit-slider-thumb {
   appearance: none;
-  width: 18px;
-  height: 18px;
+  width: 16px;
+  height: 16px;
   border-radius: 50%;
-  background-color: #2f5bd3;
+  background: #2f5bd3;
   border: 3px solid #fff;
-  cursor: pointer;
   box-shadow: 0 0 0 2px #2f5bd3;
+  cursor: pointer;
 }
 
-/* Value box (right side) */
+/* VALUE BOX (LEFT SIDE LIKE DESIGN) */
 .range-widget-wrapper .range-bubble {
   position: absolute;
-  right: 0;
-  top: -40px;
-  background: #f5f5f5;
-  padding: 6px 12px;
-  border-radius: 8px;
-  font-size: 14px;
-  font-weight: 500;
+  top: -45px;
+  left: 0;
+  background: #f3f3f3;
+  padding: 8px 14px;
+  border-radius: 10px;
+  font-weight: 600;
   border: 1px solid #ddd;
 }
 
-/* Steps labels */
+/* STEP LABELS */
 .range-steps {
   display: flex;
   justify-content: space-between;
-  margin-top: 6px;
+  margin-top: 8px;
   font-size: 12px;
-  color: #777;
+  color: #7a7a7a;
 }
 
-/* Min/Max */
+/* REMOVE EXTRA MIN/MAX TEXT */
 .range-widget-wrapper .range-min,
 .range-widget-wrapper .range-max {
-  font-size: 12px;
-  color: #888;
-  margin-top: 6px;
-}
-
-.range-widget-wrapper .range-min {
-  float: left;
-}
-
-.range-widget-wrapper .range-max {
-  float: right;
+  display: none;
 }
