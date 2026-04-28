@@ -1403,7 +1403,7 @@ img[alt="Buy a new Health Insurance"] {
     display: block;
     width: 100%;
     max-width: 260px;                 /* adjust if your column is narrower */
-    height: auto;
+    height: 25px;
     border-radius: 24px;              /* same rounding as design */
     border: none;
     background-color: #ffe7f2;        /* light pink background, like mock */
