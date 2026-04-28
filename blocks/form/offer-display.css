@@ -1,48 +1,56 @@
 /* ================================================
-   OFFER DISPLAY PAGE — COMPLETE VISUAL OVERHAUL
-   Paste at bottom of offer-display.css
+   OFFER DISPLAY PAGE — offer-display.css
+   Full replacement file
    ================================================ */
 
-/* ── Page title ── */
+/* ── Page-level intro text ── */
 .field-offer-display-intro p {
-  font-size: 20px !important;
-  font-weight: 700 !important;
-  color: #1f2937 !important;
-  margin-bottom: 20px !important;
+  font-size: 20px;
+  font-weight: 700;
+  color: #1f2937;
+  margin-bottom: 16px;
 }
 
 /* ── Highlight banner ("You can get a loan up to…") ── */
 .field-offer-highlight-banner {
-  background: #eef6ff !important;
-  border-radius: 12px !important;
-  padding: 16px 20px !important;
-  margin-bottom: 28px !important;
-  display: flex !important;
-  align-items: center !important;
-  grid-column: span 12 !important;
+  background: #eef4ff;
+  border-radius: 12px;
+  padding: 18px 24px;
+  margin-bottom: 28px;
+  grid-column: span 12;
 }
 
 .field-offer-highlight-banner p {
-  font-size: 16px !important;
-  font-weight: 600 !important;
-  color: #1f2937 !important;
+  font-size: 16px;
+  font-weight: 700;
+  color: #1f2937;
+  margin: 0;
+}
+
+/* ── Outer two-column layout panel ── */
+/* This fieldset wraps both the left inputs panel (col-7) and right summary panel (col-5) */
+.field-loan-offer-layout {
+  grid-column: span 12;
+  display: grid !important;
+  grid-template-columns: 7fr 5fr !important;
+  gap: 40px !important;
+  align-items: start !important;
+  border: none !important;
+  padding: 0 !important;
   margin: 0 !important;
 }
 
-/* ── Outer layout panel (7 col left + 5 col right) ── */
-.field-loan-offer-layout {
-  display: grid !important;
-  grid-template-columns: 7fr 5fr !important;
-  gap: 32px !important;
-  align-items: start !important;
-  grid-column: span 12 !important;
+.field-loan-offer-layout > legend.field-label {
+  display: none !important;
 }
 
-/* ── Left panel: inputs ── */
+/* ── Left panel: loan inputs ── */
 .field-loan-inputs-panel {
-  background: #ffffff !important;
   border: none !important;
   padding: 0 !important;
+  display: block !important;
+  grid-column: unset !important;
+  width: 100% !important;
 }
 
 .field-loan-inputs-panel > legend.field-label {
@@ -51,26 +59,82 @@
   color: #1f2937 !important;
   margin-bottom: 24px !important;
   border: none !important;
+  padding: 0 !important;
+  width: 100% !important;
+  display: block !important;
 }
 
-/* ── Range slider track ── */
-.field-loan-amount-inr .range-widget-wrapper input[type="range"],
-.field-loan-tenure-months .range-widget-wrapper input[type="range"] {
+/* ── Field wrappers inside left panel ── */
+.field-loan-inputs-panel .field-wrapper {
+  margin: 0 0 24px 0 !important;
+  grid-column: span 12 !important;
+}
+
+/* Field labels */
+.field-loan-amount-inr > label.field-label,
+.field-loan-tenure-months > label.field-label {
+  font-size: 15px !important;
+  font-weight: 600 !important;
+  color: #374151 !important;
+  display: block !important;
+  margin-bottom: 12px !important;
+}
+
+/* ── Range widget wrapper ── */
+.range-widget-wrapper {
+  position: relative !important;
+  padding-bottom: 28px !important;
+}
+
+/* Hide the floating bubble — we show value in a box via JS */
+.range-widget-wrapper .range-bubble {
+  display: none !important;
+}
+
+/* ── Range input — orange filled track, blue thumb ── */
+.range-widget-wrapper input[type="range"] {
   -webkit-appearance: none !important;
   appearance: none !important;
   width: 100% !important;
   height: 6px !important;
   border-radius: 3px !important;
-  background: linear-gradient(to right, #f97316 var(--range-progress, 100%), #e5e7eb var(--range-progress, 100%)) !important;
   border: none !important;
-  margin: 10px 0 !important;
+  outline: none !important;
   cursor: pointer !important;
+  background: #f97316 !important; /* fallback; JS overrides with gradient */
+  margin: 8px 0 !important;
+  padding: 0 !important;
 }
 
-/* Slider thumb */
-.field-loan-amount-inr .range-widget-wrapper input[type="range"]::-webkit-slider-thumb,
-.field-loan-tenure-months .range-widget-wrapper input[type="range"]::-webkit-slider-thumb {
+/* Firefox track */
+.range-widget-wrapper input[type="range"]::-moz-range-track {
+  height: 6px !important;
+  border-radius: 3px !important;
+  background: #e5e7eb !important;
+}
+
+.range-widget-wrapper input[type="range"]::-moz-range-progress {
+  height: 6px !important;
+  border-radius: 3px !important;
+  background: #f97316 !important;
+}
+
+/* WebKit thumb */
+.range-widget-wrapper input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: none !important;
+  appearance: none !important;
+  width: 22px !important;
+  height: 22px !important;
+  border-radius: 50% !important;
+  background: #2563eb !important;
+  border: 3px solid #ffffff !important;
+  box-shadow: 0 0 0 2px #2563eb !important;
+  cursor: pointer !important;
+  margin-top: -8px !important;
+}
+
+/* Firefox thumb */
+.range-widget-wrapper input[type="range"]::-moz-range-thumb {
   width: 22px !important;
   height: 22px !important;
   border-radius: 50% !important;
@@ -80,37 +144,41 @@
   cursor: pointer !important;
 }
 
-/* Slider bubble (current value tooltip) */
-.field-loan-amount-inr .range-widget-wrapper .range-bubble,
-.field-loan-tenure-months .range-widget-wrapper .range-bubble {
-  display: none !important;
-}
-
-/* Range step labels */
-.field-loan-amount-inr .range-widget-wrapper .range-steps,
-.field-loan-tenure-months .range-widget-wrapper .range-steps {
+/* Range step labels (50K, 2L, 4L…) */
+.range-widget-wrapper .range-steps {
   display: flex !important;
   justify-content: space-between !important;
-  margin-top: 6px !important;
+  margin-top: 8px !important;
+  padding: 0 !important;
 }
 
-.field-loan-amount-inr .range-widget-wrapper .range-steps span,
-.field-loan-tenure-months .range-widget-wrapper .range-steps span {
+.range-widget-wrapper .range-steps span {
   font-size: 12px !important;
   color: #9ca3af !important;
+  font-weight: 400 !important;
 }
 
-/* Field labels (Loan Amount, Loan Tenure) */
-.field-loan-amount-inr > label.field-label,
-.field-loan-tenure-months > label.field-label {
-  font-size: 15px !important;
-  font-weight: 600 !important;
-  color: #374151 !important;
-  display: block !important;
-  margin-bottom: 8px !important;
+/* ── Value display box (shown above slider via JS injection) ── */
+.range-value-display {
+  display: inline-block;
+  background: #ffffff;
+  border: 1.5px solid #d1d5db;
+  border-radius: 8px;
+  padding: 6px 16px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #1f2937;
+  min-width: 130px;
+  text-align: center;
+  margin-bottom: 10px;
 }
 
 /* ── Proceed button ── */
+.field-proceed-button {
+  margin-top: 8px !important;
+  grid-column: span 12 !important;
+}
+
 .field-proceed-button button {
   background: #2563eb !important;
   color: #ffffff !important;
@@ -137,63 +205,79 @@
   display: flex !important;
   flex-direction: column !important;
   gap: 0 !important;
+  grid-column: unset !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
 }
 
 .field-offer-summary-panel > legend.field-label {
   display: none !important;
 }
 
-/* "Avail XPRESS Personal Loan of" heading */
+/* "Avail XPRESS Personal Loan of ₹15,00,000" heading */
+.field-offer-summary-heading {
+  margin-bottom: 16px !important;
+  grid-column: span 12 !important;
+}
+
 .field-offer-summary-heading p {
   font-size: 14px !important;
-  font-weight: 600 !important;
+  font-weight: 500 !important;
   color: #374151 !important;
   line-height: 1.5 !important;
-  margin: 0 0 4px 0 !important;
-}
-
-.field-offer-summary-heading p strong {
-  font-weight: 800 !important;
-  font-size: 32px !important;
-  color: #1f2937 !important;
-  display: block !important;
-  margin-top: 4px !important;
-}
-
-/* EMI + Rate of Interest row: two-up bordered cells */
-.field-emi-amount,
-.field-rate-of-interest {
-  border: 1px solid #e5d5b0 !important;
-  padding: 12px 14px !important;
-  background: transparent !important;
   margin: 0 !important;
 }
 
+.field-offer-summary-heading p strong,
+.field-offer-summary-heading p b {
+  font-size: 32px !important;
+  font-weight: 800 !important;
+  color: #1f2937 !important;
+  display: block !important;
+  line-height: 1.2 !important;
+  margin-top: 4px !important;
+}
+
+/* ── EMI Amount cell (col-6) ── */
 .field-emi-amount {
-  border-radius: 8px 0 0 0 !important;
+  border: 1px solid #e5d5b0 !important;
   border-right: none !important;
-  margin-top: 16px !important;
+  border-bottom: none !important;
+  border-radius: 8px 0 0 0 !important;
+  padding: 12px 14px !important;
+  background: transparent !important;
+  margin: 0 !important;
+  grid-column: span 6 !important;
+  box-sizing: border-box !important;
 }
 
+/* ── Rate of Interest cell (col-6) ── */
 .field-rate-of-interest {
+  border: 1px solid #e5d5b0 !important;
+  border-bottom: none !important;
   border-radius: 0 8px 0 0 !important;
-  margin-top: 16px !important;
+  padding: 12px 14px !important;
+  background: transparent !important;
+  margin: 0 !important;
+  grid-column: span 6 !important;
+  box-sizing: border-box !important;
 }
 
-/* Taxes row below EMI/Rate */
+/* ── Taxes cell (col-12, full width) ── */
 .field-taxes-amount {
   border: 1px solid #e5d5b0 !important;
-  border-top: none !important;
   border-radius: 0 0 8px 8px !important;
   padding: 12px 14px !important;
   background: transparent !important;
   margin: 0 0 14px 0 !important;
+  grid-column: span 12 !important;
+  box-sizing: border-box !important;
 }
 
-/* Labels inside summary fields */
-.field-emi-amount > label,
-.field-rate-of-interest > label,
-.field-taxes-amount > label {
+/* Labels inside summary cells */
+.field-emi-amount > label.field-label,
+.field-rate-of-interest > label.field-label,
+.field-taxes-amount > label.field-label {
   font-size: 12px !important;
   color: #9ca3af !important;
   font-weight: 400 !important;
@@ -201,13 +285,14 @@
   margin-bottom: 4px !important;
 }
 
-/* Inputs inside summary fields (read-only values) */
-.field-emi-amount input,
-.field-rate-of-interest input,
-.field-taxes-amount input {
+/* Inputs inside summary cells — styled as plain read-only values */
+.field-emi-amount input[type="text"],
+.field-rate-of-interest input[type="text"],
+.field-taxes-amount input[type="text"] {
   border: none !important;
+  border-radius: 0 !important;
   background: transparent !important;
-  font-size: 16px !important;
+  font-size: 15px !important;
   font-weight: 700 !important;
   color: #1f2937 !important;
   padding: 0 !important;
@@ -218,11 +303,11 @@
   box-shadow: none !important;
 }
 
-/* ── Disclaimer (orange bar at bottom of summary card) ── */
+/* ── Disclaimer bar (orange, bottom of summary card) ── */
 .field-offer-disclaimer {
   background: #f97316 !important;
   border-radius: 10px !important;
-  padding: 12px 14px !important;
+  padding: 12px 16px !important;
   grid-column: span 12 !important;
   margin: 0 !important;
 }
@@ -231,5 +316,13 @@
   font-size: 12px !important;
   color: #ffffff !important;
   margin: 0 !important;
-  line-height: 1.5 !important;
+  line-height: 1.6 !important;
+}
+
+/* ── Responsive: stack on mobile ── */
+@media (max-width: 768px) {
+  .field-loan-offer-layout {
+    grid-template-columns: 1fr !important;
+    gap: 24px !important;
+  }
 }
