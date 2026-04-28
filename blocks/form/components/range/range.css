@@ -1,5 +1,5 @@
 /** styling for range */
-/* main .form .range-widget-wrapper.decorated input[type="range"] {
+main .form .range-widget-wrapper.decorated input[type="range"] {
     margin: unset;
     padding: unset;
     appearance: none;
@@ -48,7 +48,7 @@ main .form .range-widget-wrapper.decorated input[type="range"]:focus {
  
 .range-widget-wrapper.decorated .range-max {
     float: right;
-} */
+}
 
 
 
