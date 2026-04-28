@@ -159,18 +159,19 @@
 }
 
 /* ── Value display box (shown above slider via JS injection) ── */
-.range-value-display {
+.loan-value-display {
   display: inline-block;
   background: #ffffff;
   border: 1.5px solid #d1d5db;
   border-radius: 8px;
-  padding: 6px 16px;
+  padding: 8px 16px;
   font-size: 15px;
   font-weight: 600;
   color: #1f2937;
-  min-width: 130px;
+  min-width: 140px;
   text-align: center;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
+  margin-top: 8px;
 }
 
 /* ── Proceed button ── */

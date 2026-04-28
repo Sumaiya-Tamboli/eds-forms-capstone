@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loan Offer Display</title>
+    <script src="/scripts/aem.js" type="module"></script>
+    <script src="/scripts/scripts.js" type="module"></script>
+    <link rel="stylesheet" href="/styles/styles.css"/>
+</head>
+<body>
+    <header></header>
+    <main>
+        <div>
+            <div class="form">
+                <div>
+                    <div>
+                        <fieldset class="panel-wrapper field-offer-display-page field-wrapper col-12" data-id="panelcontainer-3dd3948c83" id="panelcontainer-3dd3948c83" name="offer_display_page">
+                            <legend for="panelcontainer-3dd3948c83" class="field-label">Offer Display Page</legend>
+                            
+                            <div class="plain-text-wrapper field-offer-display-intro field-wrapper" data-id="text-23d6a46146" id="text-23d6a46146">
+                                <p>🎉 <b>Loan offer based on customer's declared income</b></p>
+                            </div>
+                            
+                            <div class="plain-text-wrapper field-offer-highlight-banner field-wrapper" data-id="text-335c6e8936" id="text-335c6e8936">
+                                <p><b>You can get a loan up to ₹15,00,000!</b></p>
+                            </div>
+                            
+                            <fieldset class="panel-wrapper field-loan-offer-layout field-wrapper col-12" data-id="panelcontainer-9ba398cd84" id="panelcontainer-9ba398cd84" name="loan_offer_layout">
+                                <legend for="panelcontainer-9ba398cd84" class="field-label">Enter loan amount & tenure</legend>
+                                
+                                <fieldset class="panel-wrapper field-loan-inputs-panel field-wrapper col-7" data-id="panelcontainer-6dc538fc5a" id="panelcontainer-6dc538fc5a" name="loan_inputs_panel">
+                                    <legend for="panelcontainer-6dc538fc5a" class="field-label">Enter loan amount & tenure</legend>
+                                    
+                                    <div class="number-wrapper field-loan-amount-inr field-wrapper" data-id="numberinput-1f987153b7" data-type="number" data-required="false" data-component-status="loaded" data-active="true">
+                                        <label for="numberinput-1f987153b7" class="field-label">Loan Amount (INR)</label>
+                                        <div class="range-widget-wrapper decorated" style="--current-steps: 27; --total-steps: 29;">
+                                            <div class="range-bubble">₹14,00,000</div>
+                                            <input type="range" step="50000" max="1500000" min="50000" id="numberinput-1f987153b7" name="loan_amount_inr" value="1500000" autocomplete="off">
+                                            <div class="range-steps">
+                                                <span>50K</span>
+                                                <span>2L</span>
+                                                <span>4L</span>
+                                                <span>6L</span>
+                                                <span>8L</span>
+                                                <span>10L</span>
+                                                <span>15L</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="number-wrapper field-loan-tenure-months field-wrapper" data-id="numberinput-5d02539698" data-type="number" data-required="false" data-component-status="loaded">
+                                        <label for="numberinput-5d02539698" class="field-label">Loan Tenure (In months)</label>
+                                        <div class="range-widget-wrapper decorated" style="--current-steps: 15; --total-steps: 29;">
+                                            <div class="range-bubble">84 months</div>
+                                            <input type="range" step="12" id="numberinput-5d02539698" name="loan_tenure_months" value="84" autocomplete="off" min="12" max="84">
+                                            <div class="range-steps">
+                                                <span>12m</span>
+                                                <span>24m</span>
+                                                <span>36m</span>
+                                                <span>48m</span>
+                                                <span>60m</span>
+                                                <span>72m</span>
+                                                <span>84m</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="button-wrapper field-proceed-button field-wrapper submit-wrapper col-6" data-id="submit-ea1cabc5b5">
+                                        <button type="submit" class="button" id="submit-ea1cabc5b5" name="proceed_button">Proceed</button>
+                                    </div>
+                                </fieldset>
+                                
+                                <fieldset class="panel-wrapper field-offer-summary-panel field-wrapper col-5" data-id="panelcontainer-3caf017098" id="panelcontainer-3caf017098" name="offer_summary_panel">
+                                    <legend for="panelcontainer-3caf017098" class="field-label">Offer Summary</legend>
+                                    
+                                    <div class="plain-text-wrapper field-offer-summary-heading field-wrapper" data-id="text-487e9bdc24" id="text-487e9bdc24">
+                                        <p>Avail <b>XPRESS</b> Personal Loan of</p>
+                                        <p><b>₹15,00,000</b></p>
+                                    </div>
+                                    
+                                    <div class="text-wrapper field-emi-amount field-wrapper col-6" data-id="textinput-467d0a0c03" data-required="false">
+                                        <label for="textinput-467d0a0c03" class="field-label">EMI Amount</label>
+                                        <input type="text" id="textinput-467d0a0c03" name="emi_amount" autocomplete="off" readonly>
+                                    </div>
+                                    
+                                    <div class="text-wrapper field-rate-of-interest field-wrapper col-6" data-id="textinput-df0651f5c6" data-required="false">
+                                        <label for="textinput-df0651f5c6" class="field-label">Rate of Interest</label>
+                                        <input type="text" id="textinput-df0651f5c6" name="rate_of_interest" autocomplete="off" readonly>
+                                    </div>
+                                    
+                                    <div class="text-wrapper field-taxes-amount field-wrapper col-12" data-id="textinput-9180d75c2b" data-required="false">
+                                        <label for="textinput-9180d75c2b" class="field-label">Taxes</label>
+                                        <input type="text" id="textinput-9180d75c2b" name="taxes_amount" autocomplete="off" readonly>
+                                    </div>
+                                    
+                                    <div class="plain-text-wrapper field-offer-disclaimer field-wrapper" data-id="text-3e3370c94e" id="text-3e3370c94e">
+                                        <p>The principal offer is subject to credit review, basis which the loan amount may be down-sized or rejected.</p>
+                                    </div>
+                                </fieldset>
+                            </fieldset>
+                        </fieldset>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer></footer>
+    <script src="/blocks/form/offer-display.js"></script>
+    <link rel="stylesheet" href="/blocks/form/offer-display.css">
+</body>
+</html>
