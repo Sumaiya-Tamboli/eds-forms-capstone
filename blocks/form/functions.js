@@ -58,5 +58,106 @@ function maskMobileNumber(mobileNumber) {
 
 // eslint-disable-next-line import/prefer-default-export
 export {
-  getFullName, days, submitFormArrayToString, maskMobileNumber,
+  getFullName, days, submitFormArrayToString, maskMobileNumber,startOtpTimer,resendOtp
 };
+
+
+
+
+ 
+let timerInterval = null;
+let timerValue = 40;
+let attemptsLeft = 3;
+const totalAttempts = 3;
+ 
+/**
+ * Starts a 40 second countdown timer
+ * Updates timer field and shows/hides resend OTP button automatically
+ * @returns {string} initial timer display value
+ */
+function startOtpTimer() {
+  timerValue = 40;
+ 
+  if (timerInterval) {
+    clearInterval(timerInterval);
+  }
+ 
+  const timerInput = document.querySelector('input[name="timer"]');
+  const timerWrapper = timerInput?.closest('.field-wrapper');
+  const resendBtn = document.querySelector('button[name="resend_otp"]');
+  const resendWrapper = resendBtn?.closest('.field-wrapper');
+ 
+  // Show timer, hide resend at start
+  if (timerWrapper) timerWrapper.style.setProperty('display', '', 'important');
+  if (resendWrapper) {
+    resendWrapper.classList.remove('hidden');
+    resendWrapper.classList.remove('hide');
+    resendWrapper.style.setProperty('display', 'none', 'important');
+  }
+  if (resendBtn) resendBtn.disabled = true;
+ 
+  timerInterval = setInterval(() => {
+    timerValue--;
+ 
+    if (timerInput) {
+      timerInput.value = `Resend OTP in ${timerValue} secs`;
+    }
+ 
+    if (timerValue <= 0) {
+      clearInterval(timerInterval);
+      timerInterval = null;
+ 
+      // Hide timer
+      if (timerWrapper) {
+        timerWrapper.style.setProperty('display', 'none', 'important');
+      }
+ 
+      // Show resend button only if attempts remain
+      if (attemptsLeft > 0) {
+        if (resendWrapper) {
+          resendWrapper.classList.remove('hidden');
+          resendWrapper.classList.remove('hide');
+          resendWrapper.style.setProperty('display', '', 'important');
+        }
+        if (resendBtn) resendBtn.disabled = false;
+      }
+    }
+  }, 1000);
+ 
+  return `Resend OTP in ${timerValue} secs`;
+}
+ 
+/**
+ * Handles resend OTP click - decreases attempts and restarts timer
+ * @returns {string} updated attempts display value
+ */
+function resendOtp() {
+  const attemptsInput = document.querySelector('input[name="otp_attempts_left"]');
+  const resendBtn = document.querySelector('button[name="resend_otp"]');
+  const resendWrapper = resendBtn?.closest('.field-wrapper');
+ 
+  // Decrease attempts
+  attemptsLeft--;
+ 
+  // Update attempts field display
+  if (attemptsInput) {
+    attemptsInput.value = `${attemptsLeft}/${totalAttempts} attempts left`;
+  }
+ 
+  if (attemptsLeft <= 0) {
+    // No more attempts - hide resend button permanently
+    if (resendWrapper) {
+      resendWrapper.style.setProperty('display', 'none', 'important');
+    }
+    if (resendBtn) resendBtn.disabled = true;
+ 
+    return `0/${totalAttempts} attempts left`;
+  }
+ 
+  // Still have attempts - restart timer
+  startOtpTimer();
+ 
+  return `${attemptsLeft}/${totalAttempts} attempts left`;
+}
+ 
+ 
