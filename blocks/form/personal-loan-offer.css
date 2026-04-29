@@ -1,0 +1,537 @@
+/* =====================================================
+   PERSONAL LOAN OFFER FORM - EXACT IMAGE MATCH
+   ===================================================== */
+
+/* Main container */
+.field-personal-loan-offer {
+  max-width: 900px;
+  margin: 0 auto;
+  background: #ffffff;
+  padding: 32px 40px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+}
+
+/* Main heading */
+.field-personal-loan-offer > legend.field-label {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin: 0 0 28px 0;
+  padding: 0;
+  border: none;
+  display: block;
+}
+
+/* Hide nested panel legends */
+.field-welcome > legend,
+.field-income > legend {
+  display: none !important;
+}
+
+/* =====================================================
+   WELCOME SECTION - First Row
+   ===================================================== */
+
+.field-welcome {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 24px;
+  border: none;
+  padding: 0;
+}
+
+/* Mobile number field with country code */
+.field-aadhaar-linked-mobile-number {
+  grid-column: span 1;
+  position: relative;
+}
+
+.field-aadhaar-linked-mobile-number label {
+  display: block;
+  font-size: 13px;
+  font-weight: 400;
+  color: #666;
+  margin-bottom: 6px;
+}
+
+.field-aadhaar-linked-mobile-number input {
+  width: 100%;
+  height: 40px;
+  border: 1px solid #d1d5d9;
+  border-radius: 4px;
+  padding: 0 12px 0 70px;
+  font-size: 14px;
+  color: #333;
+  background: #ffffff;
+  margin: 0;
+}
+
+.field-aadhaar-linked-mobile-number input::placeholder {
+  color: #999;
+  font-size: 13px;
+}
+
+.field-aadhaar-linked-mobile-number input:focus {
+  outline: none;
+  border-color: #5b8def;
+}
+
+/* Country code prefix */
+.field-aadhaar-linked-mobile-number::before {
+  content: "🇮🇳 +91";
+  position: absolute;
+  left: 12px;
+  top: 34px;
+  font-size: 13px;
+  color: #666;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* Field description */
+.field-aadhaar-linked-mobile-number .field-description {
+  font-size: 11px;
+  color: #999;
+  margin-top: 4px;
+}
+
+/* =====================================================
+   IDENTIFICATION TYPE - Radio Buttons
+   ===================================================== */
+
+.field-id-type {
+  grid-column: span 1;
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+.field-id-type legend {
+  display: block;
+  font-size: 13px;
+  font-weight: 400;
+  color: #666;
+  margin-bottom: 6px;
+}
+
+.field-id-type .radio-wrapper {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-right: 20px;
+  margin-bottom: 0;
+}
+
+.field-id-type input[type="radio"] {
+  width: 16px;
+  height: 16px;
+  margin: 0;
+  cursor: pointer;
+  accent-color: #5b8def;
+}
+
+.field-id-type label {
+  font-size: 13px;
+  font-weight: 400;
+  color: #333;
+  cursor: pointer;
+  margin: 0;
+}
+
+/* =====================================================
+   DATE OF BIRTH FIELD
+   ===================================================== */
+
+.field-date-of-birth {
+  grid-column: span 1;
+}
+
+.field-date-of-birth label {
+  display: block;
+  font-size: 13px;
+  font-weight: 400;
+  color: #666;
+  margin-bottom: 6px;
+}
+
+.field-date-of-birth input {
+  width: 100%;
+  height: 40px;
+  border: 1px solid #d1d5d9;
+  border-radius: 4px;
+  padding: 0 12px;
+  font-size: 14px;
+  color: #333;
+  background: #ffffff;
+  margin: 0;
+}
+
+.field-date-of-birth input::placeholder {
+  color: #999;
+  font-size: 13px;
+}
+
+.field-date-of-birth input:focus {
+  outline: none;
+  border-color: #5b8def;
+}
+
+/* Hide PAN number field initially */
+.field-pan-number {
+  display: none;
+  grid-column: span 1;
+}
+
+.field-pan-number label {
+  display: block;
+  font-size: 13px;
+  font-weight: 400;
+  color: #666;
+  margin-bottom: 6px;
+}
+
+.field-pan-number input {
+  width: 100%;
+  height: 40px;
+  border: 1px solid #d1d5d9;
+  border-radius: 4px;
+  padding: 0 12px;
+  font-size: 14px;
+  color: #333;
+  background: #ffffff;
+  margin: 0;
+}
+
+/* =====================================================
+   INCOME SECTION
+   ===================================================== */
+
+.field-income {
+  border: none;
+  padding: 0;
+  margin-bottom: 20px;
+}
+
+/* Income source radio buttons */
+.field-income-source {
+  border: none;
+  padding: 0;
+  margin-bottom: 16px;
+}
+
+.field-income-source legend {
+  display: block;
+  font-size: 13px;
+  font-weight: 400;
+  color: #666;
+  margin-bottom: 8px;
+}
+
+.field-income-source .radio-wrapper {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.field-income-source input[type="radio"] {
+  width: 16px;
+  height: 16px;
+  margin: 0 8px 0 0;
+  cursor: pointer;
+  accent-color: #5b8def;
+  vertical-align: middle;
+}
+
+.field-income-source label {
+  font-size: 13px;
+  font-weight: 400;
+  color: #333;
+  cursor: pointer;
+  margin: 0;
+  vertical-align: middle;
+}
+
+/* Yellow info box */
+.field-income-note {
+  background: #fff7e6;
+  border: 1px solid #ffd699;
+  border-left: 4px solid #ff9800;
+  border-radius: 4px;
+  padding: 10px 14px;
+  margin: 0;
+}
+
+.field-income-note p {
+  font-size: 12px;
+  color: #8b5e00;
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* =====================================================
+   CONSENTS SECTION
+   ===================================================== */
+
+.field-panel-3 {
+  border: none;
+  padding: 0;
+  margin: 24px 0;
+}
+
+.field-panel-3 > legend {
+  display: none;
+}
+
+/* Checkboxes */
+.field-consent-collection-processing,
+.field-consent-marketing {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.field-consent-collection-processing input[type="checkbox"],
+.field-consent-marketing input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  margin-top: 2px;
+  cursor: pointer;
+  accent-color: #5b8def;
+  flex-shrink: 0;
+}
+
+.field-consent-collection-processing label,
+.field-consent-marketing label {
+  font-size: 12px;
+  font-weight: 400;
+  color: #555;
+  line-height: 1.5;
+  cursor: pointer;
+  margin: 0;
+}
+
+/* Terms & Privacy text */
+.field-terms-privacy-text {
+  margin: 12px 0 0 0;
+}
+
+.field-terms-privacy-text p {
+  font-size: 12px;
+  color: #666;
+  margin: 0;
+}
+
+.field-terms-privacy-text b {
+  color: #2563eb;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+/* =====================================================
+   SUBMIT BUTTON
+   ===================================================== */
+
+.field-view-loan-eligibility {
+  margin: 28px 0;
+}
+
+.field-view-loan-eligibility button {
+  background: linear-gradient(90deg, #7b9ef5 0%, #5b8def 100%);
+  color: #ffffff;
+  border: none;
+  border-radius: 24px;
+  padding: 11px 32px 11px 28px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(91, 141, 239, 0.3);
+}
+
+.field-view-loan-eligibility button:hover {
+  background: linear-gradient(90deg, #5b8def 0%, #4a7bd8 100%);
+  box-shadow: 0 4px 12px rgba(91, 141, 239, 0.4);
+  transform: translateY(-1px);
+}
+
+/* Arrow icon */
+.field-view-loan-eligibility button::after {
+  content: "→";
+  font-size: 16px;
+  font-weight: 700;
+}
+
+/* =====================================================
+   IMPORTANT LINKS TEXT
+   ===================================================== */
+
+.field-important-links-text {
+  margin: 0 0 32px 0;
+  text-align: center;
+}
+
+.field-important-links-text p {
+  font-size: 11px;
+  color: #999;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* =====================================================
+   ESSENTIALS FOR THE JOURNEY
+   ===================================================== */
+
+.field-essentials-for-journey {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  padding: 20px 24px;
+  margin-top: 32px;
+}
+
+.field-essentials-for-journey > legend {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin-bottom: 18px;
+  display: block;
+}
+
+/* Grid layout for essentials */
+.field-essentials-for-journey {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.field-essentials-for-journey > legend {
+  grid-column: 1 / -1;
+}
+
+/* Each essential item */
+.field-essential-mobile-phone,
+.field-essential-pan-card,
+.field-essential-date-of-birth,
+.field-essential-bank-details {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+}
+
+/* Icons before text */
+.field-essential-mobile-phone::before {
+  content: "📱";
+  font-size: 20px;
+  flex-shrink: 0;
+}
+
+.field-essential-pan-card::before {
+  content: "💳";
+  font-size: 20px;
+  flex-shrink: 0;
+}
+
+.field-essential-date-of-birth::before {
+  content: "📅";
+  font-size: 20px;
+  flex-shrink: 0;
+}
+
+.field-essential-bank-details::before {
+  content: "📄";
+  font-size: 20px;
+  flex-shrink: 0;
+}
+
+.field-essential-mobile-phone p,
+.field-essential-pan-card p,
+.field-essential-date-of-birth p,
+.field-essential-bank-details p {
+  font-size: 13px;
+  color: #2563eb;
+  margin: 0;
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+/* =====================================================
+   REQUIRED FIELD ASTERISK
+   ===================================================== */
+
+[data-required="true"] > label::after {
+  content: "*";
+  color: #ef4444;
+  margin-left: 3px;
+  font-size: 14px;
+}
+
+/* Remove asterisk from radio/checkbox groups */
+.radio-wrapper > label::after,
+.checkbox-wrapper > label::after {
+  content: none;
+}
+
+/* =====================================================
+   RESPONSIVE DESIGN
+   ===================================================== */
+
+@media (max-width: 768px) {
+  .field-personal-loan-offer {
+    padding: 24px 20px;
+  }
+
+  .field-welcome {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .field-aadhaar-linked-mobile-number,
+  .field-id-type,
+  .field-date-of-birth,
+  .field-pan-number {
+    grid-column: span 1;
+  }
+
+  .field-essentials-for-journey {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .field-essentials-for-journey {
+    grid-template-columns: 1fr;
+  }
+
+  .field-view-loan-eligibility button {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* =====================================================
+   OVERRIDE EXISTING FORM STYLES
+   ===================================================== */
+
+/* Remove default margins/padding that conflict */
+.field-personal-loan-offer .field-wrapper {
+  margin: 0;
+}
+
+.field-personal-loan-offer input[type="text"],
+.field-personal-loan-offer input[type="date"] {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.field-personal-loan-offer .radio-wrapper,
+.field-personal-loan-offer .checkbox-wrapper {
+  margin: 0;
+}
